@@ -1,3 +1,9 @@
+mod args;
+
+use args::RJCArgs;
+use clap::Parser;
+
 fn main() {
-    println!("Hello, world!");
+    let args = RJCArgs::parse();
+    println!("{:#?}", args);
 }
