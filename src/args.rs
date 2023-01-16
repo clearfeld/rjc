@@ -4,16 +4,27 @@ use clap::{Args, Parser, Subcommand};
 #[clap(version, about)]
 pub struct RJCArgs {
     #[command(subcommand)]
-    command_parsers: CommandParsers,
+    pub command_parsers: CommandParsers,
 }
 
 #[derive(Debug, Subcommand)]
-enum CommandParsers {
+pub enum CommandParsers {
+    // win32 commands
     /// `dir` command parser
-    Dir(Dir)
+    Dir(Dir),
+
+    // unix commands
+    /// `ls` command parser
+    Ls(Ls)
 }
 
 #[derive(Debug, Args)]
-struct Dir {
-    name: Option<String>,
+pub struct Dir {
+    // name: Option<String>,
 }
+
+#[derive(Debug, Args)]
+pub struct Ls {
+
+}
+
