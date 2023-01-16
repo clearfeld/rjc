@@ -14,7 +14,7 @@ fn main() {
     match &args.command_parsers {
         args::CommandParsers::Dir(_) => {
             // println!("Dir (supports /o) parse only...");
-            parsers::dir::parse();
+            parsers::dir::parse(args.output);
         },
         args::CommandParsers::Ls(_) => {
             println!("Ls no impl yet...");

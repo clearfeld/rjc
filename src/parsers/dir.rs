@@ -3,6 +3,8 @@ use std::io::{self, BufRead};
 use serde::{Deserialize, Serialize};
 use serde_json;
 
+use crate::args;
+
 #[derive(Debug, Serialize, Deserialize)]
 struct DirData {
     meta: Meta,
@@ -25,12 +27,11 @@ struct Resources {
     is_dir: bool,
     size: Option<i32>,
     name: String,
-
     // TODO: maybe add this for jc compatibility
     // epoch: i32,
 }
 
-pub fn parse() {
+pub fn parse(output_type: args::OutputTypes) {
     let handle = io::stdin().lock();
 
     let mut meta = Meta {
@@ -106,23 +107,37 @@ pub fn parse() {
         // println!("{}", sl);
     }
 
-    let dd_json = serde_json::to_string(&&DirData {
-        meta: meta,
-        resources: resources,
-    });
+    match output_type {
+        args::OutputTypes::Yaml => {
+            let output = serde_yaml::to_string(&&DirData {
+                meta: meta,
+                resources: resources,
+            });
 
-    // TODO: probably should add a flag for pretty print
-    // let dd_json = serde_json::to_string_pretty(&DirData {
-    //     meta: meta,
-    //     resources: resources
-    // });
-
-    match dd_json {
-        Ok(dd_json) => {
-            println!("\n{}", dd_json);
+            match output {
+                Ok(o) => {
+                    println!("\n{}", o);
+                }
+                Err(e) => {
+                    println!("Err - {:?}", e);
+                }
+            }
         }
-        Err(e) => {
-            println!("\n{:?}", e);
+
+        args::OutputTypes::Json => {
+            let output = serde_json::to_string(&&DirData {
+                meta: meta,
+                resources: resources,
+            });
+
+            match output {
+                Ok(o) => {
+                    println!("\n{}", o);
+                }
+                Err(e) => {
+                    println!("Err - {:?}", e);
+                }
+            }
         }
     }
 }
