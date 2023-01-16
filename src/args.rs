@@ -14,6 +14,7 @@ pub struct RJCArgs {
 pub enum OutputTypes {
     Json,
     Yaml,
+    Toml,
 }
 
 #[derive(Debug, Subcommand)]

@@ -109,12 +109,10 @@ pub fn parse(output_type: args::OutputTypes) {
 
     match output_type {
         args::OutputTypes::Yaml => {
-            let output = serde_yaml::to_string(&&DirData {
+            match serde_yaml::to_string(&&DirData {
                 meta: meta,
                 resources: resources,
-            });
-
-            match output {
+            }) {
                 Ok(o) => {
                     println!("\n{}", o);
                 }
@@ -125,12 +123,24 @@ pub fn parse(output_type: args::OutputTypes) {
         }
 
         args::OutputTypes::Json => {
-            let output = serde_json::to_string(&&DirData {
+            match serde_json::to_string(&&DirData {
                 meta: meta,
                 resources: resources,
-            });
+            }) {
+                Ok(o) => {
+                    println!("\n{}", o);
+                }
+                Err(e) => {
+                    println!("Err - {:?}", e);
+                }
+            }
+        }
 
-            match output {
+        args::OutputTypes::Toml => {
+            match toml::to_string(&&DirData {
+                meta: meta,
+                resources: resources,
+            }) {
                 Ok(o) => {
                     println!("\n{}", o);
                 }
