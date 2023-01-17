@@ -1,7 +1,9 @@
 mod args;
 
 mod parsers {
-    pub mod dir;
+    pub mod win32 {
+        pub mod dir;
+    }
 }
 
 use clap::Parser;
@@ -14,8 +16,8 @@ fn main() {
     match &args.command_parsers {
         args::CommandParsers::Dir(_) => {
             // println!("Dir (supports /o) parse only...");
-            parsers::dir::parse(args.output);
-        },
+            parsers::win32::dir::parse(args.output);
+        }
         args::CommandParsers::Ls(_) => {
             println!("Ls no impl yet...");
         }
