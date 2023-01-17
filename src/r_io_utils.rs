@@ -5,8 +5,8 @@ pub fn print_output<T: serde::Serialize>(
     output_type: args::OutputTypes
 ) -> () {
     match output_type {
-        args::OutputTypes::Yaml => {
-            match serde_yaml::to_string(command_data_struct) {
+        args::OutputTypes::Json => {
+            match serde_json::to_string(command_data_struct) {
                 Ok(o) => {
                     println!("\n{}", o);
                 }
@@ -16,8 +16,19 @@ pub fn print_output<T: serde::Serialize>(
             }
         }
 
-        args::OutputTypes::Json => {
-            match serde_json::to_string(command_data_struct) {
+        args::OutputTypes::Pretty => {
+            match serde_json::to_string_pretty(command_data_struct) {
+                Ok(o) => {
+                    println!("\n{}", o);
+                }
+                Err(e) => {
+                    println!("Err - {:?}", e);
+                }
+            }
+        }
+
+        args::OutputTypes::Yaml => {
+            match serde_yaml::to_string(command_data_struct) {
                 Ok(o) => {
                     println!("\n{}", o);
                 }

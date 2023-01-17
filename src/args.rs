@@ -13,6 +13,8 @@ pub struct RJCArgs {
 #[derive(Debug, Clone, ValueEnum)]
 pub enum OutputTypes {
     Json,
+    // Json with formating
+    Pretty,
     Yaml,
     Toml,
 }
