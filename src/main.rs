@@ -1,4 +1,5 @@
 mod args;
+mod r_io_utils;
 
 mod parsers {
     pub mod win32 {

@@ -1,11 +1,11 @@
 use std::io::{self, BufRead};
 
 use serde::{Deserialize, Serialize};
-use serde_json;
 
 use crate::args;
+use crate::r_io_utils;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 struct LsData {
     // meta: Meta,
     resources: Vec<Resources>,
@@ -16,7 +16,7 @@ struct LsData {
 // TODO:
 // }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 struct Resources {
     name: String,
     permissions: String,
@@ -78,47 +78,11 @@ pub fn parse(output_type: args::OutputTypes) {
         // println!("{}", sl);
     }
 
-    match output_type {
-        args::OutputTypes::Yaml => {
-            match serde_yaml::to_string(&&LsData {
-                // meta: meta,
-                resources: resources,
-            }) {
-                Ok(o) => {
-                    println!("\n{}", o);
-                }
-                Err(e) => {
-                    println!("Err - {:?}", e);
-                }
-            }
-        }
-
-        args::OutputTypes::Json => {
-            match serde_json::to_string(&&LsData {
-                // meta: meta,
-                resources: resources,
-            }) {
-                Ok(o) => {
-                    println!("\n{}", o);
-                }
-                Err(e) => {
-                    println!("Err - {:?}", e);
-                }
-            }
-        }
-
-        args::OutputTypes::Toml => {
-            match toml::to_string(&&LsData {
-                // meta: meta,
-                resources: resources,
-            }) {
-                Ok(o) => {
-                    println!("\n{}", o);
-                }
-                Err(e) => {
-                    println!("Err - {:?}", e);
-                }
-            }
-        }
-    }
+    r_io_utils::print_output::<LsData>(
+        &LsData {
+            // meta: meta,
+            resources: resources,
+        },
+        output_type,
+    );
 }
