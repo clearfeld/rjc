@@ -25,16 +25,16 @@ pub enum CommandParsers {
 
     // unix commands
     /// `ls` command parser
-    Ls(Ls)
+    Ls(Ls),
 }
 
 #[derive(Debug, Args)]
 pub struct Dir {
-    // name: Option<String>,
+    // -w
+    // wide: Option<String>,
 }
 
 #[derive(Debug, Args)]
 pub struct Ls {
-
+    // TODO: flags
 }
-

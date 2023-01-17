@@ -4,6 +4,9 @@ mod parsers {
     pub mod win32 {
         pub mod dir;
     }
+    pub mod unix {
+        pub mod ls;
+    }
 }
 
 use clap::Parser;
@@ -19,7 +22,7 @@ fn main() {
             parsers::win32::dir::parse(args.output);
         }
         args::CommandParsers::Ls(_) => {
-            println!("Ls no impl yet...");
+            parsers::unix::ls::parse(args.output);
         }
     }
 
