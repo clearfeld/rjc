@@ -5,6 +5,7 @@ mod parsers {
     pub mod win32 {
         pub mod dir;
         pub mod assoc;
+        pub mod netstat;
     }
     pub mod unix {
         pub mod ls;
@@ -28,6 +29,10 @@ fn main() {
         args::CommandParsers::Assoc(_) => {
             // println!("Dir (supports /o) parse only...");
             parsers::win32::assoc::parse(args.output);
+        }
+        args::CommandParsers::Netstat(_) => {
+            // println!("Dir (supports /o) parse only...");
+            parsers::win32::netstat::parse(args.output);
         }
 
         // unix

@@ -25,6 +25,7 @@ pub enum CommandParsers {
     /// `dir` command parser
     Dir(Dir),
     Assoc(Assoc),
+    Netstat(Netstat),
 
     // unix commands
     /// `ls` command parser
@@ -41,6 +42,9 @@ pub struct Dir {
 
 #[derive(Debug, Args)]
 pub struct Assoc {}
+
+#[derive(Debug, Args)]
+pub struct Netstat {}
 
 // unix
 
