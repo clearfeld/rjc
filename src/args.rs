@@ -28,6 +28,8 @@ pub enum CommandParsers {
     Assoc(Assoc),
     /// "`netstat` -an" command parser
     Netstat(Netstat),
+    /// `tasklist` command parser
+    Tasklist(Tasklist),
 
     // unix commands
     /// `ls` command parser
@@ -47,6 +49,9 @@ pub struct Assoc {}
 
 #[derive(Debug, Args)]
 pub struct Netstat {}
+
+#[derive(Debug, Args)]
+pub struct Tasklist {}
 
 // unix
 

@@ -6,6 +6,7 @@ mod parsers {
         pub mod dir;
         pub mod assoc;
         pub mod netstat;
+        pub mod tasklist;
     }
     pub mod unix {
         pub mod ls;
@@ -30,6 +31,9 @@ fn main() {
         }
         args::CommandParsers::Netstat(_) => {
             parsers::win32::netstat::parse(args.output);
+        }
+        args::CommandParsers::Tasklist(_) => {
+            parsers::win32::tasklist::parse(args.output);
         }
 
         // unix
