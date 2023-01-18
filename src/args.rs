@@ -24,17 +24,25 @@ pub enum CommandParsers {
     // win32 commands
     /// `dir` command parser
     Dir(Dir),
+    Assoc(Assoc),
 
     // unix commands
     /// `ls` command parser
     Ls(Ls),
 }
 
+// win32
+
 #[derive(Debug, Args)]
 pub struct Dir {
     // -w
     // wide: Option<String>,
 }
+
+#[derive(Debug, Args)]
+pub struct Assoc {}
+
+// unix
 
 #[derive(Debug, Args)]
 pub struct Ls {
