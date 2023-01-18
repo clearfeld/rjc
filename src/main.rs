@@ -23,15 +23,12 @@ fn main() {
         // win32
 
         args::CommandParsers::Dir(_) => {
-            // println!("Dir (supports /o) parse only...");
             parsers::win32::dir::parse(args.output);
         }
         args::CommandParsers::Assoc(_) => {
-            // println!("Dir (supports /o) parse only...");
             parsers::win32::assoc::parse(args.output);
         }
         args::CommandParsers::Netstat(_) => {
-            // println!("Dir (supports /o) parse only...");
             parsers::win32::netstat::parse(args.output);
         }
 

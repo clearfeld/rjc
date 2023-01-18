@@ -24,7 +24,9 @@ pub enum CommandParsers {
     // win32 commands
     /// `dir` command parser
     Dir(Dir),
+    /// `assoc` command parser
     Assoc(Assoc),
+    /// "`netstat` -an" command parser
     Netstat(Netstat),
 
     // unix commands
