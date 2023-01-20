@@ -36,6 +36,8 @@ pub enum CommandParsers {
     Ls(Ls),
     /// `du` command parser
     Du,
+    /// `cksum` command parser
+    Cksum,
 
     // common
     Lsd,

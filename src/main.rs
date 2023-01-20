@@ -11,6 +11,7 @@ mod parsers {
     pub mod unix {
         pub mod ls;
         pub mod du;
+        pub mod cksum;
     }
     pub mod common {
         pub mod lsd;
@@ -47,6 +48,9 @@ fn main() {
         }
         args::CommandParsers::Du => {
             parsers::unix::du::parse(args.output);
+        }
+        args::CommandParsers::Cksum => {
+            parsers::unix::cksum::parse(args.output);
         }
 
         // common
