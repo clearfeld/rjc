@@ -12,6 +12,9 @@ mod parsers {
         pub mod ls;
         pub mod du;
     }
+    pub mod common {
+        pub mod lsd;
+    }
 }
 
 use clap::Parser;
@@ -45,6 +48,12 @@ fn main() {
         args::CommandParsers::Du => {
             parsers::unix::du::parse(args.output);
         }
+
+        // common
+        args::CommandParsers::Lsd => {
+            parsers::common::lsd::parse(args.output);
+        }
+
     }
 
     // TODO: find ansi term color crate

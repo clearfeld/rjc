@@ -36,6 +36,9 @@ pub enum CommandParsers {
     Ls(Ls),
     /// `du` command parser
     Du,
+
+    // common
+    Lsd,
 }
 
 // win32
