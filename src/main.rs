@@ -10,6 +10,7 @@ mod parsers {
     }
     pub mod unix {
         pub mod ls;
+        pub mod du;
     }
 }
 
@@ -40,6 +41,9 @@ fn main() {
 
         args::CommandParsers::Ls(_) => {
             parsers::unix::ls::parse(args.output);
+        }
+        args::CommandParsers::Du => {
+            parsers::unix::du::parse(args.output);
         }
     }
 

@@ -34,6 +34,8 @@ pub enum CommandParsers {
     // unix commands
     /// `ls` command parser
     Ls(Ls),
+    /// `du` command parser
+    Du,
 }
 
 // win32
