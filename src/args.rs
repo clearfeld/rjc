@@ -38,6 +38,8 @@ pub enum CommandParsers {
     Du,
     /// `cksum` command parser
     Cksum,
+    /// `env` command parser
+    Env,
 
     // common
     Lsd,
