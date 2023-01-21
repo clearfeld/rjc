@@ -30,8 +30,6 @@ pub fn parse(output_type: args::OutputTypes) {
     // let mut meta = Meta {};
     let mut resources = vec![];
 
-    println!("0000000000000000000000000000000000000000000000000000000000000000000000");
-
     for line in handle.lines() {
         let sl = line.unwrap();
 
