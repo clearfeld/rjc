@@ -16,6 +16,9 @@ mod parsers {
     pub mod common {
         pub mod lsd;
     }
+    pub mod formats {
+        pub mod email_address;
+    }
 }
 
 use clap::Parser;
@@ -56,6 +59,11 @@ fn main() {
         // common
         args::CommandParsers::Lsd => {
             parsers::common::lsd::parse(args.output);
+        }
+
+        // formats
+        args::CommandParsers::EmailAddress => {
+            parsers::formats::email_address::parse(args.output);
         }
 
     }

@@ -41,6 +41,10 @@ pub enum CommandParsers {
 
     // common
     Lsd,
+
+    // formats
+    /// `email address` format parser
+    EmailAddress,
 }
 
 // win32
