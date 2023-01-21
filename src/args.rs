@@ -40,6 +40,8 @@ pub enum CommandParsers {
     Cksum,
     /// `env` command parser
     Env,
+    /// `file` command parser
+    File,
 
     // common
     Lsd,

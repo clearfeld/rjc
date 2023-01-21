@@ -13,6 +13,7 @@ mod parsers {
         pub mod du;
         pub mod cksum;
         pub mod env;
+        pub mod file;
     }
     pub mod common {
         pub mod lsd;
@@ -58,6 +59,9 @@ fn main() {
         }
         args::CommandParsers::Env => {
             parsers::unix::env::parse(args.output);
+        }
+        args::CommandParsers::File => {
+            parsers::unix::file::parse(args.output);
         }
 
         // common
