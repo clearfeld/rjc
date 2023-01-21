@@ -7,6 +7,7 @@ mod parsers {
     }
     pub mod unix {
         pub mod ls;
+        pub mod wc;
     }
 }
 
@@ -24,6 +25,9 @@ fn main() {
         }
         args::CommandParsers::Ls(_) => {
             parsers::unix::ls::parse(args.output);
+        }
+        args::CommandParsers::Wc(_) => {
+            parsers::unix::wc::parse(args.output);
         }
     }
 

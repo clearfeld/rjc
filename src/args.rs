@@ -28,6 +28,7 @@ pub enum CommandParsers {
     // unix commands
     /// `ls` command parser
     Ls(Ls),
+    Wc(Wc),
 }
 
 #[derive(Debug, Args)]
@@ -38,5 +39,10 @@ pub struct Dir {
 
 #[derive(Debug, Args)]
 pub struct Ls {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Wc {
     // TODO: flags
 }
