@@ -10,6 +10,7 @@ mod parsers {
     }
     pub mod unix {
         pub mod ls;
+        pub mod wc;
         pub mod du;
         pub mod cksum;
         pub mod env;
@@ -50,6 +51,9 @@ fn main() {
 
         args::CommandParsers::Ls(_) => {
             parsers::unix::ls::parse(args.output);
+        }
+        args::CommandParsers::Wc(_) => {
+            parsers::unix::wc::parse(args.output);
         }
         args::CommandParsers::Du => {
             parsers::unix::du::parse(args.output);
