@@ -51,6 +51,9 @@ pub enum CommandParsers {
     // formats
     /// `email address` format parser
     EmailAddress,
+
+    /// `ps` command parser
+    Ps(Ps),
 }
 
 // win32
@@ -79,5 +82,10 @@ pub struct Ls {
 
 #[derive(Debug, Args)]
 pub struct Wc {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Ps {
     // TODO: flags
 }
