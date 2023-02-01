@@ -1,0 +1,57 @@
+Usage (cli)
+
+```
+tasklist | rjc tasklist
+```
+
+Schema
+
+```
+[
+    {
+        "image_name":   String,
+        "pid":          i32,
+        "session_name": String,
+        "session":      i32,
+        "memory_usage": i32
+    }
+]
+```
+
+Example
+
+```json
+$ tasklist | rjc -o=pretty tasklist
+[
+   ...
+    {
+        "image_name": "chrome.exe",
+        "pid": 25928,
+        "session_name": "Console",
+        "session": 20,
+        "memory_usage": 74696
+    },
+    {
+        "image_name": "chrome.exe",
+        "pid": 26572,
+        "session_name": "Console",
+        "session": 20,
+        "memory_usage": 66864
+    },
+    {
+        "image_name": "chrome.exe",
+        "pid": 56384,
+        "session_name": "Console",
+        "session": 20,
+        "memory_usage": 90824
+    },
+    {
+        "image_name": "svchost.exe",
+        "pid": 17228,
+        "session_name": "Console",
+        "session": 20,
+        "memory_usage": 12396
+    },
+    ...
+]
+```
