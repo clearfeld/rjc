@@ -1,0 +1,60 @@
+Usage (cli)
+
+```
+lsd -al | rjc lsd
+```
+
+Schema
+
+```
+[
+    "resources": {
+        "name":        String,
+        "permissions": String,
+        "owner":       String,
+        "group":       String,
+        "date":        String,
+        "size":        f32,
+        "unit":        String,
+    }
+]
+```
+
+Example
+
+```json
+$ lsd -al | rjc -o=pretty lsd
+[
+    "resources": [
+        ...
+        {
+            "name": ".git",
+            "permissions": "drwx------",
+            "owner": "DESKTOP-N67LQCF\\M",
+            "group": "DESKTOP-N67LQCF\\None",
+            "date": "Tue Jan 31 21:07:11 2023",
+            "size": 4.0,
+            "unit": "KB"
+        },
+        {
+            "name": ".gitignore",
+            "permissions": ".rwx------",
+            "owner": "DESKTOP-N67LQCF\\M",
+            "group": "DESKTOP-N67LQCF\\None",
+            "date": "Sat Jan 21 20:18:50 2023",
+            "size": 13.0,
+            "unit": "B"
+        },
+        {
+            "name": "Cargo.lock",
+            "permissions": ".rwx------",
+            "owner": "DESKTOP-N67LQCF\\M",
+            "group": "DESKTOP-N67LQCF\\None",
+            "date": "Sat Jan 21 20:17:57 2023",
+            "size": 11.0,
+            "unit": "KB"
+        },
+        ...
+    ]
+]
+```
