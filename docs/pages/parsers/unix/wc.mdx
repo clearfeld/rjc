@@ -1,0 +1,59 @@
+Usage (cli)
+
+```
+wc * | rjc wc
+```
+
+Schema
+
+```
+{
+    "meta": {
+        "total_lines":      i32,
+        "total_words":      i32,
+        "total_characters": i32
+    },
+    "resources": [
+        {
+            "name":       String,
+            "lines":      i32,
+            "words":      i32,
+            "characters": i32
+        }
+    ]
+}
+```
+
+Example
+
+```json
+$ wc * | rjc -o=pretty wc
+{
+    "meta": {
+        "total_lines": 477,
+        "total_words": 978,
+        "total_characters": 12759
+    },
+    "resources": [
+        {
+            "name": "Cargo.lock",
+            "lines": 420,
+            "words": 825,
+            "characters": 11117
+        },
+        {
+            "name": "Cargo.toml",
+            "lines": 14,
+            "words": 65,
+            "characters": 437
+        },
+        {
+            "name": "README.md",
+            "lines": 43,
+            "words": 88,
+            "characters": 1205
+        }
+        ...
+    ]
+}
+```
