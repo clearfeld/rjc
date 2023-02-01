@@ -1,0 +1,58 @@
+Usage (cli)
+
+```
+assoc | rjc assoc
+```
+
+Schema
+
+```
+[
+    {
+        "filetype": String,
+        "program":  String
+    }
+]
+```
+
+Example
+
+```json
+$ assoc | rjc -o=pretty assoc
+[
+    ...
+    {
+        "filetype": "xls",
+        "program": "LibreOffice.Xls"
+    },
+    {
+        "filetype": "xlsb",
+        "program": "LibreOffice.Xlsb"
+    },
+    {
+        "filetype": "xlsm",
+        "program": "LibreOffice.Xlsm"
+    },
+    {
+        "filetype": "xlsx",
+        "program": "LibreOffice.Xlsx"
+    },
+    {
+        "filetype": "xlt",
+        "program": "LibreOffice.Xlt"
+    },
+    {
+        "filetype": "xltm",
+        "program": "LibreOffice.Xltm"
+    },
+    {
+        "filetype": "xltx",
+        "program": "LibreOffice.Xltx"
+    },
+    {
+        "filetype": "xml",
+        "program": "xmlfile"
+    },
+    ...
+]
+```
