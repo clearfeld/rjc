@@ -1,0 +1,28 @@
+Usage (cli)
+
+```
+file * | rjc file
+```
+
+Schema
+
+```
+[
+    {
+        "name": String,
+        "value": String
+    }
+]
+```
+
+Example
+
+```json
+$ file README.md | rjc -o=pretty file
+[
+    {
+        "name": "README.md",
+        "value": "ASCII text, with very long lines (684)"
+    }
+]
+```
