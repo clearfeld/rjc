@@ -1,0 +1,61 @@
+Usage (cli)
+
+```
+ls -al | rjc ls
+```
+
+Schema
+
+```
+{
+    "resources" [
+        {
+            "name":         String,
+            "permissions":  String,
+            "links":        i32,
+            "owner":        String,
+            "group":        String,
+            "size":         i32,
+            "date":         String,
+        }
+    ]
+}
+```
+
+Example
+
+```json
+$ ls -al | rjc -o=pretty ls
+{
+  "resources": [
+    ...
+    {
+      "name": "args.rs",
+      "permissions": "-rw-r--r--",
+      "links": 1,
+      "owner": "M",
+      "group": "197121",
+      "size": 1427,
+      "date": "Jan 21 20:17"
+    },
+    {
+      "name": "main.rs",
+      "permissions": "-rw-r--r--",
+      "links": 1,
+      "owner": "M",
+      "group": "197121",
+      "size": 2067,
+      "date": "Jan 21 20:05"
+    },
+    {
+      "name": "r_io_utils.rs",
+      "permissions": "-rw-r--r--",
+      "links": 1,
+      "owner": "M",
+      "group": "197121",
+      "size": 1383,
+      "date": "Jan 17 00:29"
+    }
+  ]
+}
+```
