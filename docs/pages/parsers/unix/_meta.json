@@ -1,0 +1,8 @@
+{
+    "cksum": "cksum",
+    "du": "du",
+    "env": "env",
+    "file": "file",
+    "ls": "ls",
+    "wc": "wc"
+}

@@ -1,0 +1,41 @@
+Usage (cli)
+
+```
+cksum * | rjc cksum
+```
+
+Schema
+
+```
+[
+    {
+        "filename": string,
+        "checksum": i64,
+        "blocks":   i32
+    }
+]
+```
+
+Example
+
+```json
+$ cksum * | rjc -o=pretty cksum
+[
+    {
+        "filename": "Cargo.lock",
+        "checksum": 3004260688,
+        "blocks": 11117
+    },
+    {
+        "filename": "Cargo.toml",
+        "checksum": 1046762512,
+        "blocks": 437
+    },
+    {
+        "filename": "README.md",
+        "checksum": 2958139355,
+        "blocks": 1205
+    }
+    ...
+]
+```
