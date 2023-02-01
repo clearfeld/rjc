@@ -1,0 +1,89 @@
+Usage (cli)
+
+```
+dir | rjc dir
+```
+
+Schema
+
+```
+[
+    "meta": {
+        "drive":       String,
+        "serial":      String,
+        "directory":   String,
+        "files":       i32,
+        "directories": i32
+    }
+    "resources": [
+        {
+            "date":   String,
+            "time":   String,
+            "is_dir": bool,
+            "size":   Option<i32>, // i32 | null
+            "name":   String,
+        }
+    ]
+]
+```
+
+Example
+
+```json
+$ dir | rjc -o=pretty dir
+
+{
+    "meta": {
+        "drive": "F",
+        "serial": "38EC-3395",
+        "directory": "F:\\Dev\\rjc",
+        "files": 4,
+        "directories": 7
+    },
+    "resources": [
+        {
+            "date": "01/31/2023",
+            "time": "07:19 PM",
+            "is_dir": true,
+            "size": null,
+            "name": "."
+        },
+        {
+            "date": "01/31/2023",
+            "time": "07:19 PM",
+            "is_dir": true,
+            "size": null,
+            "name": ".."
+        },
+        {
+            "date": "01/21/2023",
+            "time": "08:18 PM",
+            "is_dir": false,
+            "size": 13,
+            "name": ".gitignore"
+        },
+        {
+            "date": "01/21/2023",
+            "time": "08:17 PM",
+            "is_dir": false,
+            "size": 11117,
+            "name": "Cargo.lock"
+        },
+        {
+            "date": "01/21/2023",
+            "time": "08:17 PM",
+            "is_dir": false,
+            "size": 437,
+            "name": "Cargo.toml"
+        },
+        {
+            "date": "01/31/2023",
+            "time": "07:46 PM",
+            "is_dir": true,
+            "size": null,
+            "name": "docs"
+        },
+        ...
+    ]
+}
+```
