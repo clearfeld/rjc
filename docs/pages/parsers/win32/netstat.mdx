@@ -1,0 +1,66 @@
+Usage (cli)
+
+```
+netstat -an | rjc netstat
+```
+
+Schema
+
+```
+{
+    "tcp": [
+        {
+            "local_address":    String,
+            "foreign_address":  String,
+            "state":            String
+        }
+    ],
+    "udp": [
+        {
+            "local_address":   String,
+            "foreign_address": String
+        }
+    ]
+}
+```
+
+Example
+
+```json
+$ netstat -an | rjc -o=pretty netstat
+{
+    "tcp": [
+        {
+            "local_address": "0.0.0.0:135",
+            "foreign_address": "0.0.0.0:0",
+            "state": "LISTENING"
+        },
+        {
+            "local_address": "0.0.0.0:445",
+            "foreign_address": "0.0.0.0:0",
+            "state": "LISTENING"
+        },
+        {
+            "local_address": "0.0.0.0:3000",
+            "foreign_address": "0.0.0.0:0",
+            "state": "LISTENING"
+        },
+        ...
+    ],
+    "udp": [
+        {
+            "local_address": "0.0.0.0:53",
+            "foreign_address": "*:*"
+        },
+        {
+            "local_address": "0.0.0.0:500",
+            "foreign_address": "*:*"
+        },
+        {
+            "local_address": "0.0.0.0:4500",
+            "foreign_address": "*:*"
+        },
+        ...
+    ]
+}
+```
