@@ -1,0 +1,48 @@
+Usage (cli)
+
+```
+du | rjc du
+```
+
+Schema
+
+```
+[
+    {
+        "size": i32,
+        "name": String
+    }
+]
+```
+
+Example
+
+```json
+$ du | rjc -o=pretty du
+[
+    {
+        "size": 4,
+        "name": "src\\/parsers/common"
+    },
+    {
+        "size": 4,
+        "name": "src\\/parsers/formats"
+    },
+    {
+        "size": 25,
+        "name": "src\\/parsers/unix"
+    },
+    {
+        "size": 16,
+        "name": "src\\/parsers/win32"
+    },
+    {
+        "size": 49,
+        "name": "src\\/parsers"
+    },
+    {
+        "size": 61,
+        "name": "src\\"
+    }
+]
+```
