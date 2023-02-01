@@ -7,14 +7,16 @@ use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 struct WcData {
-    // meta: Meta,
+    meta: Meta,
     resources: Vec<Resources>,
 }
 
-// #[derive(Debug, Serialize, Deserialize)]
-// struct Meta {
-// TODO:
-// }
+#[derive(Debug, Serialize, Deserialize, Clone)]
+struct Meta {
+    total_lines: i32,
+    total_words: i32,
+    total_characters: i32,
+}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 struct Resources {
@@ -27,7 +29,11 @@ struct Resources {
 pub fn parse(output_type: args::OutputTypes) {
     let handle = io::stdin().lock();
 
-    // let mut meta = Meta {};
+    let mut meta = Meta {
+        total_lines: 0,
+        total_words: 0,
+        total_characters: 0,
+    };
     let mut resources = vec![];
 
     for line in handle.lines() {
@@ -51,10 +57,14 @@ pub fn parse(output_type: args::OutputTypes) {
 
         // println!("{}", sl);
     }
+    let met = resources.pop().unwrap();
+    meta.total_lines = met.lines;
+    meta.total_words = met.words;
+    meta.total_characters = met.characters;
 
     r_io_utils::print_output::<WcData>(
         &WcData {
-            // meta: meta,
+            meta: meta,
             resources: resources,
         },
         output_type,
