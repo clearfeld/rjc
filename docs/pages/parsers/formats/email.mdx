@@ -1,0 +1,32 @@
+Usage (cli)
+
+```
+echo 'johndoe@gmail.com' | rjc email-address
+```
+
+Schema
+
+```
+[
+    {
+        "username":          String,
+        "domain":            String,
+        "local":             String,
+        "local_plus_suffix": Option<String>
+    }
+]
+```
+
+Example
+
+```json
+$ echo 'joe.user+spam@gmail.com' | rjc -o=pretty email-address
+[
+    {
+        "username": "'joe.user",
+        "domain": "gmail.com' ",
+        "local": "'joe.user+spam",
+        "local_plus_suffix": "spam"
+    }
+]
+```
