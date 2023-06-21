@@ -45,6 +45,10 @@ pub enum CommandParsers {
     /// `file` command parser
     File,
 
+    // osx commands
+    /// `airport` command parser
+    Airport(Airport),
+
     // common
     Lsd,
 
@@ -87,5 +91,12 @@ pub struct Wc {
 
 #[derive(Debug, Args)]
 pub struct Ps {
+    // TODO: flags
+}
+
+// osx
+
+#[derive(Debug, Args)]
+pub struct Airport {
     // TODO: flags
 }

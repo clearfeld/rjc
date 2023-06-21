@@ -17,6 +17,9 @@ mod parsers {
         pub mod file;
         pub mod ps;
     }
+    pub mod darwin { // apple osx
+        pub mod airport;
+    }
     pub mod common {
         pub mod lsd;
     }
@@ -70,6 +73,12 @@ fn main() {
         }
         args::CommandParsers::Ps(_) => {
             parsers::unix::ps::parse(args.output);
+        }
+
+        // darwin
+
+        args::CommandParsers::Airport(_) => {
+            parsers::darwin::airport::parse(args.output);
         }
 
         // common
