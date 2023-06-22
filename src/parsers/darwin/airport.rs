@@ -20,7 +20,7 @@ struct AirportData {
     op_mode: String,
     #[serde(rename = "lastTxRate")]
     last_tx_rate: i32,
-    #[serde(rename = "MaxRate")]
+    #[serde(rename = "maxRate")]
     max_rate: i32,
     #[serde(rename = "lastAssocStatus")]
     last_assoc_status: i32,

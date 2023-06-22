@@ -2,5 +2,6 @@
   "common": "Common",
   "formats": "Formats",
   "unix": "Unix",
-  "win32": "Win32"
+  "win32": "Win32",
+  "darwin": "darwin"
 }

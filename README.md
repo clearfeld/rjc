@@ -15,7 +15,7 @@ dir | rjc dir
 | commands  |
 | --------- |
 | assoc     |
-| dir       | 
+| dir       |
 | netstat   |
 | tasklist  |
 
@@ -29,6 +29,12 @@ dir | rjc dir
 | file      |
 | ls        |
 | wc        |
+
+### Darwin
+
+| commands    |
+| ----------- |
+| airport     |
 
 ### External
 

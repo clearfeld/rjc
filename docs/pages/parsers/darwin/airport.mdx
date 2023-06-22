@@ -1,0 +1,54 @@
+Usage (cli)
+
+```
+airport -I | rjc airport
+```
+
+Schema
+
+```
+{
+    "agrCtlRSSI":      i32,
+    "agrExtRSSI":      i32,
+    "agrCtlNoise":     i32,
+    "agrExtNoise":     i32,
+    "state":           String,
+    "op mode":         String,
+    "lastTxRate":      i32,
+    "maxRate":         i32,
+    "lastAssocStatus": i32,
+    "802.11 auth":     String,
+    "link auth":       String,
+    "BSSID":           String,
+    "SSID":            String,
+    "MCS":             i32,
+    "guardInterval":   i32,
+    "NSS":             i32,
+    "channel":         String,
+}
+```
+
+Example
+
+```json
+$ airport -I | rjc -o=pretty airport
+{
+    "agrCtlRSSI": -31,
+    "agrExtRSSI": 0,
+    "agrCtlNoise": 86,
+    "agrExtNoise": 0,
+    "state": "running",
+    "op mode": "station",
+    "lastTxRate": 866,
+    "maxRate": 867,
+    "lastAssocStatus": 0,
+    "802.11 auth": "open",
+    "link auth": "wpa2-psk",
+    "BSSID": "",
+    "SSID": "MSHOME",
+    "MCS": 9,
+    "guardInterval": 400,
+    "NSS": 2,
+    "channel": "149,80"
+}
+```
