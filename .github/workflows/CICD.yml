@@ -163,7 +163,6 @@ jobs:
       with:
         files: |
           ${{ steps.package.outputs.PKG_PATH }}
-          ${{ steps.debian-package.outputs.DPKG_PATH }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
