@@ -10,6 +10,7 @@ mod parsers {
     }
     pub mod unix {
         pub mod ls;
+        pub mod chage;
         pub mod wc;
         pub mod du;
         pub mod cksum;
@@ -73,6 +74,9 @@ fn main() {
         }
         args::CommandParsers::Ps(_) => {
             parsers::unix::ps::parse(args.output);
+        }
+        args::CommandParsers::Chage(_) => {
+            parsers::unix::chage::parse(args.output);
         }
 
         // darwin

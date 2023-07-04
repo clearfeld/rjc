@@ -44,6 +44,8 @@ pub enum CommandParsers {
     Env,
     /// `file` command parser
     File,
+    /// `chage` command parser
+    Chage(Chage),
 
     // osx commands
     /// `airport` command parser
@@ -91,6 +93,11 @@ pub struct Wc {
 
 #[derive(Debug, Args)]
 pub struct Ps {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Chage {
     // TODO: flags
 }
 
