@@ -12,38 +12,38 @@ dir | rjc dir
 
 ### Win32
 
-| commands  |
-| --------- |
-| assoc     |
-| dir       |
-| netstat   |
-| tasklist  |
+| Commands  | Documentation                                            |
+| --------- | -------------------------------------------------------- |
+| assoc     | [details](https://rjc.vercel.app/parsers/win32/assoc)    |
+| dir       | [details](https://rjc.vercel.app/parsers/win32/dir)      |
+| netstat   | [details](https://rjc.vercel.app/parsers/win32/netstat)  |
+| tasklist  | [details](https://rjc.vercel.app/parsers/win32/tasklist) |
 
 ### Unix
 
-| commands  |
-| --------- |
-| cksum     |
-| du        |
-| env       |
-| file      |
-| ls        |
-| wc        |
+| Commands  | Documentation                                        |
+| --------- | ---------------------------------------------------- |
+| cksum     | [details](https://rjc.vercel.app/parsers/unix/cksum) |
+| du        | [details](https://rjc.vercel.app/parsers/unix/du)    |
+| env       | [details](https://rjc.vercel.app/parsers/unix/env)   |
+| file      | [details](https://rjc.vercel.app/parsers/unix/file)  |
+| ls        | [details](https://rjc.vercel.app/parsers/unix/ls)    |
+| wc        | [details](https://rjc.vercel.app/parsers/unix/wc)    |
 
 ### Darwin
 
-| commands    |
-| ----------- |
-| airport     |
+| Commands    | Documentation                                            |
+| ----------- | -------------------------------------------------------- |
+| airport     | [details](https://rjc.vercel.app/parsers/darwin/airport) |
 
 ### External
 
-| commands                                     |
-| -------------------------------------------- |
-| [lsd](https://github.com/Peltoche/lsd)       |
+| Commands                                     | Documentation                                        |
+| -------------------------------------------- | ---------------------------------------------------- |
+| [lsd](https://github.com/Peltoche/lsd)       | [details](https://rjc.vercel.app/parsers/common/lsd) |
 
 ### Formats
 
-| commands          |
-| ----------------- |
-| email-address     |
+| Commands          | Documentation                                            |
+| ----------------- | -------------------------------------------------------- |
+| email-address     | [details](https://rjc.vercel.app/parsers/formats/email)  |
