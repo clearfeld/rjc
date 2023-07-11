@@ -8,6 +8,19 @@ dir | rjc dir
 {"meta":{"drive":"F","serial":"38EC-3395","directory":"F:\\Dev\\rjc","files":3,"directories":4},"resources":[{"date":"01/15/2023","time":"04:14 PM","is_dir":true,"size":null,"name":"."},{"date":"01/15/2023","time":"04:14 PM","is_dir":true,"size":null,"name":".."},{"date":"01/14/2023","time":"04:25 PM","is_dir":false,"size":8,"name":".gitignore"},{"date":"01/15/2023","time":"10:38 PM","is_dir":false,"size":11117,"name":"Cargo.lock"},{"date":"01/20/2023","time":"12:53 AM","is_dir":false,"size":437,"name":"Cargo.toml"},{"date":"01/21/2023","time":"02:18 PM","is_dir":true,"size":null,"name":"src"},{"date":"01/20/2023","time":"12:53 AM","is_dir":true,"size":null,"name":"target"}]}
 ```
 
+## Installation
+
+### Cargo Install (MacOS, Linux, Windows)
+![crate version rjc](https://img.shields.io/crates/v/rjc.svg)
+
+```bash
+cargo install rjc
+```
+
+### Binaries
+
+For precompiled binaries, check the [releases](https://github.com/clearfeld/rjc/releases) in this repo.
+
 ## Parsers
 
 ### Win32
