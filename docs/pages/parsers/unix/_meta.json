@@ -4,5 +4,6 @@
     "env": "env",
     "file": "file",
     "ls": "ls",
+    "shadow": "shadow",
     "wc": "wc"
 }

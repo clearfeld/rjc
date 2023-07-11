@@ -21,14 +21,15 @@ dir | rjc dir
 
 ### Unix
 
-| Commands  | Documentation                                        |
-| --------- | ---------------------------------------------------- |
-| cksum     | [details](https://rjc.vercel.app/parsers/unix/cksum) |
-| du        | [details](https://rjc.vercel.app/parsers/unix/du)    |
-| env       | [details](https://rjc.vercel.app/parsers/unix/env)   |
-| file      | [details](https://rjc.vercel.app/parsers/unix/file)  |
-| ls        | [details](https://rjc.vercel.app/parsers/unix/ls)    |
-| wc        | [details](https://rjc.vercel.app/parsers/unix/wc)    |
+| Commands  | Documentation                                         |
+| --------- | ----------------------------------------------------- |
+| cksum     | [details](https://rjc.vercel.app/parsers/unix/cksum)  |
+| du        | [details](https://rjc.vercel.app/parsers/unix/du)     |
+| env       | [details](https://rjc.vercel.app/parsers/unix/env)    |
+| file      | [details](https://rjc.vercel.app/parsers/unix/file)   |
+| ls        | [details](https://rjc.vercel.app/parsers/unix/ls)     |
+| shadow    | [details](https://rjc.vercel.app/parsers/unix/shadow) |
+| wc        | [details](https://rjc.vercel.app/parsers/unix/wc)     |
 
 ### Darwin
 
