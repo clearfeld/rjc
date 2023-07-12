@@ -1,0 +1,47 @@
+Usage (cli)
+
+```
+sudo cat /etc/shadow | rjc shadow
+```
+
+Schema
+
+```
+{
+    "resources": [
+        {
+            "username":     String,
+            "password":     String,
+            "last_changed": i32,
+            "minimum":      i32,
+            "maximum":      i32,
+            "warn":         i32,
+            "inactive":     Option<i32>,
+            "expire":       Option<i32>,
+        }
+
+        ...
+    ]
+}
+```
+
+Example
+
+```json
+$ sudo cat /etc/shadow | rjc -o=pretty shadow
+{
+    "resources": [
+        {
+            "username": "root",
+            "password": "*",
+            "last_changed": 18113,
+            "minimum": 0,
+            "maximum": 99999,
+            "warn": 7,
+            "inactive": null,
+            "expire": null
+        },
+        ...
+    ]
+}
+```

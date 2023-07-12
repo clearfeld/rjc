@@ -18,6 +18,8 @@ mod parsers {
         pub mod file;
         pub mod ps;
         pub mod acpi;
+        pub mod passwd;
+        pub mod shadow;
     }
     pub mod darwin { // apple osx
         pub mod airport;
@@ -81,6 +83,11 @@ fn main() {
         }
         args::CommandParsers::Acpi(_) => {
             parsers::unix::acpi::parse(args.output);
+        args::CommandParsers::Passwd(_) => {
+            parsers::unix::passwd::parse(args.output);
+        }
+        args::CommandParsers::Shadow(_) => {
+            parsers::unix::shadow::parse(args.output);
         }
 
         // darwin

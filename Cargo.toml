@@ -1,8 +1,14 @@
 [package]
 name = "rjc"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "rjc converts the output of many commands, file-types, and strings to JSON, YAML, or TOML"
+license = "MPL-2.0"
+homepage = "https://rjc.vercel.app/"
+repository = "https://github.com/clearfeld/rjc"
+keywords = ["cli"]
+categories = ["command-line-utilities", "text-processing", "parser-implementations", "parsing-tools"]
+# TODO excludes
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -12,3 +18,4 @@ serde = { version = "1.0.152", features = ["derive"] }
 serde_json = "1.0.91"
 serde_yaml = "0.9.16"
 toml = "0.7.3"
+csv = "1.2.2"
