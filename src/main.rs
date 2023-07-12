@@ -17,6 +17,7 @@ mod parsers {
         pub mod env;
         pub mod file;
         pub mod ps;
+        pub mod acpi;
     }
     pub mod darwin { // apple osx
         pub mod airport;
@@ -77,6 +78,9 @@ fn main() {
         }
         args::CommandParsers::Chage(_) => {
             parsers::unix::chage::parse(args.output);
+        }
+        args::CommandParsers::Acpi(_) => {
+            parsers::unix::acpi::parse(args.output);
         }
 
         // darwin

@@ -46,6 +46,8 @@ pub enum CommandParsers {
     File,
     /// `chage` command parser
     Chage(Chage),
+    /// `acpi` command parser
+    Acpi(Acpi),
 
     // osx commands
     /// `airport` command parser
@@ -105,5 +107,10 @@ pub struct Chage {
 
 #[derive(Debug, Args)]
 pub struct Airport {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Acpi {
     // TODO: flags
 }
