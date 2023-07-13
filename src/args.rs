@@ -50,6 +50,8 @@ pub enum CommandParsers {
     Passwd(Passwd),
     /// `shadow` command parser
     Shadow(Shadow),
+    /// `w` command parser
+    W(W),
 
     // osx commands
     /// `airport` command parser
@@ -107,6 +109,11 @@ pub struct Chage {
 
 #[derive(Debug, Args)]
 pub struct Shadow {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct W {
     // TODO: flags
 }
 
