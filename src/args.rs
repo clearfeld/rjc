@@ -46,6 +46,8 @@ pub enum CommandParsers {
     File,
     /// `chage` command parser
     Chage(Chage),
+    /// `acpi` command parser
+    Acpi(Acpi),
     // `passwd
     Passwd(Passwd),
     /// `shadow` command parser
@@ -109,6 +111,11 @@ pub struct Chage {
 
 #[derive(Debug, Args)]
 pub struct Shadow {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Acpi {
     // TODO: flags
 }
 
