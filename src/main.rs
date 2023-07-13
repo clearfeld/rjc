@@ -84,6 +84,7 @@ fn main() {
         }
         args::CommandParsers::Acpi(_) => {
             parsers::unix::acpi::parse(args.output);
+        }
         args::CommandParsers::Passwd(_) => {
             parsers::unix::passwd::parse(args.output);
         }
