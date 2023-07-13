@@ -52,6 +52,8 @@ pub enum CommandParsers {
     Passwd(Passwd),
     /// `shadow` command parser
     Shadow(Shadow),
+    /// `w` command parser
+    W(W),
 
     // osx commands
     /// `airport` command parser
@@ -114,6 +116,11 @@ pub struct Shadow {
 
 #[derive(Debug, Args)]
 pub struct Acpi {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct W {
     // TODO: flags
 }
 
