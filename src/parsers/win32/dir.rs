@@ -1,6 +1,3 @@
-use std::io::Read;
-use std::io::{self};
-
 use serde::{Deserialize, Serialize};
 
 use crate::args;
@@ -33,17 +30,9 @@ pub struct Resources {
 }
 
 pub fn parse(data: Option<String>) -> DirData {
-    let mut handle = String::new();
-    match data {
-        Some(val) => {
-            handle = val;
-        },
-
-        None => {
-            let mut h = io::stdin().lock();
-            h.read_to_string(&mut handle).expect("Failed to read stdin");
-        }
-    };
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     let mut meta = Meta {
         drive: String::new(),
@@ -54,7 +43,7 @@ pub fn parse(data: Option<String>) -> DirData {
     };
     let mut resources = vec![];
 
-    for sl in handle.lines() {
+    for sl in buffer.lines() {
         if sl.starts_with(" ") {
             if sl.starts_with(" Volume in drive") {
                 meta.drive = String::from(&sl[17..18]);
