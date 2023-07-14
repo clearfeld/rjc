@@ -1,37 +1,4 @@
-mod args;
-mod r_io_utils;
-
-mod parsers {
-    pub mod win32 {
-        pub mod dir;
-        pub mod assoc;
-        pub mod netstat;
-        pub mod tasklist;
-    }
-    pub mod unix {
-        pub mod ls;
-        pub mod chage;
-        pub mod wc;
-        pub mod du;
-        pub mod cksum;
-        pub mod env;
-        pub mod file;
-        pub mod ps;
-        pub mod acpi;
-        pub mod passwd;
-        pub mod shadow;
-        pub mod w;
-    }
-    pub mod darwin { // apple osx
-        pub mod airport;
-    }
-    pub mod common {
-        pub mod lsd;
-    }
-    pub mod formats {
-        pub mod email_address;
-    }
-}
+use rjc::*;
 
 use clap::Parser;
 
@@ -44,7 +11,7 @@ fn main() {
         // win32
 
         args::CommandParsers::Dir(_) => {
-            parsers::win32::dir::parse(args.output);
+            parsers::win32::dir::print(parsers::win32::dir::parse(None), args.output);
         }
         args::CommandParsers::Assoc(_) => {
             parsers::win32::assoc::parse(args.output);

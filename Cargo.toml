@@ -1,6 +1,6 @@
 [package]
 name = "rjc"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 description = "rjc converts the output of many commands, file-types, and strings to JSON, YAML, or TOML"
 license = "MPL-2.0"
