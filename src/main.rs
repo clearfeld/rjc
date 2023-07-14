@@ -29,7 +29,10 @@ fn main() {
             );
         }
         args::CommandParsers::Tasklist(_) => {
-            parsers::win32::tasklist::parse(args.output);
+            r_io_utils::print_output::<Vec<win32::tasklist::TasklistData>>(
+                &win32::tasklist::parse(None),
+                args.output
+            );
         }
 
         // unix
