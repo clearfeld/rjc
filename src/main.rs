@@ -17,9 +17,11 @@ mod parsers {
         pub mod env;
         pub mod file;
         pub mod ps;
+        pub mod acpi;
         pub mod passwd;
         pub mod shadow;
         pub mod timestamp;
+        pub mod w;
     }
     pub mod darwin { // apple osx
         pub mod airport;
@@ -81,6 +83,9 @@ fn main() {
         args::CommandParsers::Chage(_) => {
             parsers::unix::chage::parse(args.output);
         }
+        args::CommandParsers::Acpi(_) => {
+            parsers::unix::acpi::parse(args.output);
+        }
         args::CommandParsers::Passwd(_) => {
             parsers::unix::passwd::parse(args.output);
         }
@@ -89,6 +94,9 @@ fn main() {
         }
         args::CommandParsers::Timestamp(_) => {
             parsers::unix::timestamp::parse(args.output);
+        }
+        args::CommandParsers::W(_) => {
+            parsers::unix::w::parse(args.output);
         }
 
         // darwin

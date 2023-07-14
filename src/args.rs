@@ -46,12 +46,16 @@ pub enum CommandParsers {
     File,
     /// `chage` command parser
     Chage(Chage),
+    /// `acpi` command parser
+    Acpi(Acpi),
     // `passwd
     Passwd(Passwd),
     /// `shadow` command parser
     Shadow(Shadow),
     /// `timestamp` command parser
     Timestamp(Timestamp),
+    /// `w` command parser
+    W(W),
 
     // osx commands
     /// `airport` command parser
@@ -114,6 +118,16 @@ pub struct Shadow {
 
 #[derive(Debug, Args)]
 pub struct Timestamp {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Acpi {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct W {
     // TODO: flags
 }
 
