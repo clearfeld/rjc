@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -109,11 +108,4 @@ pub fn parse(data: Option<String>) -> DirData {
         meta: meta,
         resources: resources,
     }
-}
-
-pub fn print(dd: DirData, output_type: args::OutputTypes) {
-    r_io_utils::print_output::<DirData>(
-        &dd,
-        output_type,
-    );
 }

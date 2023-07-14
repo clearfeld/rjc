@@ -11,7 +11,10 @@ fn main() {
         // win32
 
         args::CommandParsers::Dir(_) => {
-            parsers::win32::dir::print(parsers::win32::dir::parse(None), args.output);
+            r_io_utils::print_output::<win32::dir::DirData>(
+                &win32::dir::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Assoc(_) => {
             parsers::win32::assoc::parse(args.output);
