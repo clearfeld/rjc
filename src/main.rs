@@ -58,22 +58,27 @@ fn main() {
         args::CommandParsers::Shadow(_) => {
             parsers::unix::shadow::parse(args.output);
         }
+        args::CommandParsers::Timestamp(_) => {
+            parsers::unix::timestamp::parse(args.output);
+        }
         args::CommandParsers::W(_) => {
             parsers::unix::w::parse(args.output);
         }
 
         // darwin
-
+      
         args::CommandParsers::Airport(_) => {
             parsers::darwin::airport::parse(args.output);
         }
 
         // common
+      
         args::CommandParsers::Lsd => {
             parsers::common::lsd::parse(args.output);
         }
 
         // formats
+      
         args::CommandParsers::EmailAddress => {
             parsers::formats::email_address::parse(args.output);
         }

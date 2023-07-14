@@ -52,6 +52,8 @@ pub enum CommandParsers {
     Passwd(Passwd),
     /// `shadow` command parser
     Shadow(Shadow),
+    /// `timestamp` command parser
+    Timestamp(Timestamp),
     /// `w` command parser
     W(W),
 
@@ -111,6 +113,11 @@ pub struct Chage {
 
 #[derive(Debug, Args)]
 pub struct Shadow {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Timestamp {
     // TODO: flags
 }
 
