@@ -21,6 +21,23 @@ cargo install rjc
 
 For precompiled binaries, check the [releases](https://github.com/clearfeld/rjc/releases) in this repo.
 
+## Library
+
+`rjc` can also be used as a library.
+
+```rust
+use rjc::win32::dir::{DirData, parse};
+use std::process::Command;
+
+fn main() {
+    let output = Command::new("cmd").args(["/C", "dir"]).output().expect("Failed to execute process.");
+
+    let dir_data: DirData = parse(Some(String::from_utf8_lossy(&output.stdout).to_string()));
+
+    println!("{}", dir_data.meta.drive);
+}
+```
+
 ## Parsers
 
 ### Win32
