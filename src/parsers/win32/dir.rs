@@ -1,38 +1,38 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
 use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize)]
-struct DirData {
-    meta: Meta,
-    resources: Vec<Resources>,
+pub struct DirData {
+    pub meta: Meta,
+    pub resources: Vec<Resources>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct Meta {
-    drive: String,
-    serial: String,
-    directory: String,
-    files: i32,
-    directories: i32,
+pub struct Meta {
+    pub drive: String,
+    pub serial: String,
+    pub directory: String,
+    pub files: i32,
+    pub directories: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct Resources {
-    date: String,
-    time: String,
-    is_dir: bool,
-    size: Option<i32>,
-    name: String,
+pub struct Resources {
+    pub date: String,
+    pub time: String,
+    pub is_dir: bool,
+    pub size: Option<i32>,
+    pub name: String,
     // TODO: maybe add this for jc compatibility
     // epoch: i32,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> DirData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     let mut meta = Meta {
         drive: String::new(),
@@ -43,9 +43,7 @@ pub fn parse(output_type: args::OutputTypes) {
     };
     let mut resources = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
-
+    for sl in buffer.lines() {
         if sl.starts_with(" ") {
             if sl.starts_with(" Volume in drive") {
                 meta.drive = String::from(&sl[17..18]);
@@ -107,12 +105,15 @@ pub fn parse(output_type: args::OutputTypes) {
         // println!("{}", sl);
     }
 
+    DirData {
+        meta: meta,
+        resources: resources,
+    }
+}
 
+pub fn print(dd: DirData, output_type: args::OutputTypes) {
     r_io_utils::print_output::<DirData>(
-        &DirData {
-            meta: meta,
-            resources: resources,
-        },
+        &dd,
         output_type,
     );
 }
