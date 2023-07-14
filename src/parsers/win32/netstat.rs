@@ -1,41 +1,39 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 // netstat -an
 
 #[derive(Debug, Serialize, Deserialize)]
-struct ConnectionsData {
-    tcp: Vec<TCPConnectionData>,
-    udp: Vec<UDPConnectionData>,
+pub struct ConnectionsData {
+    pub tcp: Vec<TCPConnectionData>,
+    pub udp: Vec<UDPConnectionData>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct TCPConnectionData {
+pub struct TCPConnectionData {
     // protocol: String,
-    local_address: String,
-    foreign_address: String,
-    state: String,
+    pub local_address: String,
+    pub foreign_address: String,
+    pub state: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct UDPConnectionData {
+pub struct UDPConnectionData {
     // protocol: String,
-    local_address: String,
-    foreign_address: String,
+    pub local_address: String,
+    pub foreign_address: String,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> ConnectionsData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     let mut tcp_connections = vec![];
     let mut udp_connections = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
+    for sl in buffer.lines() {
         let slt = sl.trim();
 
         if slt.starts_with("T") {
@@ -56,11 +54,8 @@ pub fn parse(output_type: args::OutputTypes) {
         }
     }
 
-    r_io_utils::print_output::<ConnectionsData>(
-        &ConnectionsData{
-            tcp: tcp_connections,
-            udp: udp_connections
-        },
-        output_type,
-    );
+    ConnectionsData{
+        tcp: tcp_connections,
+        udp: udp_connections
+    }
 }

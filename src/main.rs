@@ -23,7 +23,10 @@ fn main() {
             );
         }
         args::CommandParsers::Netstat(_) => {
-            parsers::win32::netstat::parse(args.output);
+            r_io_utils::print_output::<win32::netstat::ConnectionsData>(
+                &win32::netstat::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Tasklist(_) => {
             parsers::win32::tasklist::parse(args.output);
