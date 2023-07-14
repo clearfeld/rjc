@@ -17,7 +17,10 @@ fn main() {
             );
         }
         args::CommandParsers::Assoc(_) => {
-            parsers::win32::assoc::parse(args.output);
+            r_io_utils::print_output::<Vec<win32::assoc::FileTypeAssociation>>(
+                &win32::assoc::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Netstat(_) => {
             parsers::win32::netstat::parse(args.output);
@@ -69,19 +72,19 @@ fn main() {
         }
 
         // darwin
-      
+
         args::CommandParsers::Airport(_) => {
             parsers::darwin::airport::parse(args.output);
         }
 
         // common
-      
+
         args::CommandParsers::Lsd => {
             parsers::common::lsd::parse(args.output);
         }
 
         // formats
-      
+
         args::CommandParsers::EmailAddress => {
             parsers::formats::email_address::parse(args.output);
         }

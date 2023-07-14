@@ -31,6 +31,7 @@ pub mod parsers {
         pub mod acpi;
         pub mod passwd;
         pub mod shadow;
+        pub mod timestamp;
         pub mod w;
     }
     pub mod darwin { // apple osx
