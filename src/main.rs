@@ -19,6 +19,7 @@ mod parsers {
         pub mod ps;
         pub mod passwd;
         pub mod shadow;
+        pub mod timestamp;
     }
     pub mod darwin { // apple osx
         pub mod airport;
@@ -85,6 +86,9 @@ fn main() {
         }
         args::CommandParsers::Shadow(_) => {
             parsers::unix::shadow::parse(args.output);
+        }
+        args::CommandParsers::Timestamp(_) => {
+            parsers::unix::timestamp::parse(args.output);
         }
 
         // darwin
