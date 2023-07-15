@@ -76,6 +76,9 @@ fn main() {
         args::CommandParsers::W(_) => {
             parsers::unix::w::parse(args.output);
         }
+        args::CommandParsers::Timedatectl(_) => {
+            parsers::unix::timedatectl::parse(args.output);
+        }
 
         // darwin
 
