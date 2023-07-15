@@ -1,26 +1,23 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct EmailAddressData {
-    username: String,
-    domain: String,
-    local: String,
-    local_plus_suffix: Option<String>
+pub struct EmailAddressData {
+    pub username: String,
+    pub domain: String,
+    pub local: String,
+    pub local_plus_suffix: Option<String>
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> Vec<EmailAddressData> {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     let mut emails = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
-
+    for sl in buffer.lines() {
         let at_idx = sl.find("@").unwrap();
 
         match sl.find("+") {
@@ -44,8 +41,5 @@ pub fn parse(output_type: args::OutputTypes) {
         }
     }
 
-    r_io_utils::print_output::<Vec<EmailAddressData>>(
-        &emails,
-        output_type,
-    );
+    emails
 }

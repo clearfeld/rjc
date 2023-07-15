@@ -101,7 +101,10 @@ fn main() {
         // formats
 
         args::CommandParsers::EmailAddress => {
-            parsers::formats::email_address::parse(args.output);
+            r_io_utils::print_output::<Vec<formats::email_address::EmailAddressData>>(
+                &formats::email_address::parse(None),
+                args.output
+            );
         }
 
     }
