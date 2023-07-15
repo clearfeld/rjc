@@ -83,7 +83,10 @@ fn main() {
         // darwin
 
         args::CommandParsers::Airport(_) => {
-            parsers::darwin::airport::parse(args.output);
+            r_io_utils::print_output::<darwin::airport::AirportData>(
+                &darwin::airport::parse(None),
+                args.output
+            );
         }
 
         // common

@@ -1,48 +1,47 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct AirportData {
+pub struct AirportData {
     #[serde(rename = "agrCtlRSSI")]
-    agr_ctl_rssi: i32,
+    pub agr_ctl_rssi: i32,
     #[serde(rename = "agrExtRSSI")]
-    agr_ext_rssi: i32,
+    pub agr_ext_rssi: i32,
     #[serde(rename = "agrCtlNoise")]
-    agr_ctl_noise: i32,
+    pub agr_ctl_noise: i32,
     #[serde(rename = "agrExtNoise")]
-    agr_ext_noise: i32,
-    state: String,
+    pub agr_ext_noise: i32,
+    pub state: String,
     #[serde(rename = "op mode")]
-    op_mode: String,
+    pub op_mode: String,
     #[serde(rename = "lastTxRate")]
-    last_tx_rate: i32,
+    pub last_tx_rate: i32,
     #[serde(rename = "maxRate")]
-    max_rate: i32,
+    pub max_rate: i32,
     #[serde(rename = "lastAssocStatus")]
-    last_assoc_status: i32,
+    pub last_assoc_status: i32,
     #[serde(rename = "802.11 auth")]
-    e_auth: String,
+    pub e_auth: String,
     #[serde(rename = "link auth")]
-    link_auth: String,
+    pub link_auth: String,
     #[serde(rename = "BSSID")]
-    bssid: String,
+    pub bssid: String,
     #[serde(rename = "SSID")]
-    ssid: String,
+    pub ssid: String,
     #[serde(rename = "MCS")]
-    mcs: i32,
+    pub mcs: i32,
     #[serde(rename = "guardInterval")]
-    guard_interval: i32,
+    pub guard_interval: i32,
     #[serde(rename = "NSS")]
-    nss: i32,
-    channel: String,
+    pub nss: i32,
+    pub channel: String,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> AirportData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     let mut ad = AirportData {
         agr_ctl_rssi: 0,
@@ -64,8 +63,7 @@ pub fn parse(output_type: args::OutputTypes) {
         channel: String::new(),
     };
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
+    for sl in buffer.lines() {
 
         if let Some((left, right)) = sl.split_once(":") {
             // println!("{:?} {:?}", left.trim(), right.trim());
@@ -144,5 +142,5 @@ pub fn parse(output_type: args::OutputTypes) {
         }
     }
 
-    r_io_utils::print_output::<AirportData>(&ad, output_type);
+    ad
 }
