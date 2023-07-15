@@ -11,7 +11,15 @@ dir | rjc dir
 ## Installation
 
 ### Cargo Install (MacOS, Linux, Windows)
-![crate version rjc](https://img.shields.io/crates/v/rjc.svg)
+
+<p>
+    <a href="https://crates.io/crates/rjc">
+        <img src="https://img.shields.io/crates/v/rjc.svg" />
+    </a>
+    <a href="https://docs.rs/rjc">
+        <img src="https://img.shields.io/badge/docs.rs-rjc-green" />
+    </a>
+</p>
 
 ```bash
 cargo install rjc
