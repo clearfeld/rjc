@@ -1,14 +1,11 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct LsdData {
+pub struct LsdData {
     // meta: Meta,
-    resources: Vec<Resources>,
+    pub resources: Vec<Resources>,
 }
 
 // #[derive(Debug, Serialize, Deserialize)]
@@ -16,27 +13,28 @@ struct LsdData {
 // }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Resources {
-    name: String,
-    permissions: String,
+pub struct Resources {
+    pub name: String,
+    pub permissions: String,
     // links: i32,
-    owner: String,
-    group: String,
-    date: String,
+    pub owner: String,
+    pub group: String,
+    pub date: String,
 
-    size: f32,
-    unit: String,
+    pub size: f32,
+    pub unit: String,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> LsdData {
+    // let handle = io::stdin().lock();
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     // let mut meta = Meta {};
     let mut resources = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
-
+    for sl in buffer.lines() {
         let mut line_parts = sl.split_whitespace();
 
         let mut r = Resources {
@@ -79,11 +77,8 @@ pub fn parse(output_type: args::OutputTypes) {
         // println!("{}", sl);
     }
 
-    r_io_utils::print_output::<LsdData>(
-        &LsdData {
-            // meta: meta,
-            resources: resources,
-        },
-        output_type,
-    );
+    LsdData {
+        // meta: meta,
+        resources: resources,
+    }
 }

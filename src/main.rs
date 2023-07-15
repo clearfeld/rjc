@@ -86,7 +86,10 @@ fn main() {
         // common
 
         args::CommandParsers::Lsd => {
-            parsers::common::lsd::parse(args.output);
+            r_io_utils::print_output::<common::lsd::LsdData>(
+                &common::lsd::parse(None),
+                args.output
+            );
         }
 
         // formats
