@@ -1,59 +1,57 @@
-use std::io::{self, BufRead};
 extern crate chrono;
 use chrono::{DateTime, TimeZone, NaiveDateTime, Datelike, Timelike, Local};
 
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct TimestampData {
-    // meta: Meta,
-    naive: Naive,
-    utc: Utc
+pub struct TimestampData {
+    // pub meta: Meta,
+    pub naive: Naive,
+    pub utc: Utc
 }
 
 // #[derive(Debug, Serialize, Deserialize)]
-// struct Meta {
+// pub struct Meta {
 // TODO:
 // }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Naive {
-    year: i32,
-    month: String,
-    month_num: u32,
-    day: u32,
-    weekday: String,
-    weekday_num: u32,
-    hour: u32,
-    hour_24: u32,
-    minute: u32,
-    second: u32,
-    period: String,
-    day_of_year: u32,
-    week_of_year: u32,
-    iso: String,
+pub struct Naive {
+    pub year: i32,
+    pub month: String,
+    pub month_num: u32,
+    pub day: u32,
+    pub weekday: String,
+    pub weekday_num: u32,
+    pub hour: u32,
+    pub hour_24: u32,
+    pub minute: u32,
+    pub second: u32,
+    pub period: String,
+    pub day_of_year: u32,
+    pub week_of_year: u32,
+    pub iso: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Utc {
-    year: i32,
-    month: String,
-    month_num: u32,
-    day: u32,
-    weekday: String,
-    weekday_num: u32,
-    hour: u32,
-    hour_24: u32,
-    minute: u32,
-    second: u32,
-    period: String,
-    utc_offset: String,
-    day_of_year: u32,
-    week_of_year: u32,
-    iso: String,
+pub struct Utc {
+    pub year: i32,
+    pub month: String,
+    pub month_num: u32,
+    pub day: u32,
+    pub weekday: String,
+    pub weekday_num: u32,
+    pub hour: u32,
+    pub hour_24: u32,
+    pub minute: u32,
+    pub second: u32,
+    pub period: String,
+    pub utc_offset: String,
+    pub day_of_year: u32,
+    pub week_of_year: u32,
+    pub iso: String,
 }
 
 fn get_month(month_num: u32) -> String {
@@ -91,8 +89,10 @@ fn get_day_of_week(num_from_monday: u32) -> String {
     weekday
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> TimestampData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     // let mut meta = Meta {};
     let mut naive = Naive {
@@ -129,8 +129,7 @@ pub fn parse(output_type: args::OutputTypes) {
         utc_offset: String::new()
     };
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
+    for sl in buffer.lines() {
         let timestamp = sl.parse::<i64>().unwrap();
 
         let naivedt = NaiveDateTime::from_timestamp(timestamp, (timestamp % 1) as u32 * 1_000_000);
@@ -146,7 +145,7 @@ pub fn parse(output_type: args::OutputTypes) {
 
         naive.weekday = get_day_of_week(naivedt.weekday().number_from_monday());
         utc.weekday = get_day_of_week(utcdt.weekday().number_from_monday());
-        
+
         naive.weekday_num = naivedt.weekday().number_from_monday();
         naive.day = naivedt.day();
         naive.hour = naivedt.hour12().1;
@@ -181,12 +180,9 @@ pub fn parse(output_type: args::OutputTypes) {
         utc.utc_offset = Local.offset_from_utc_datetime(&naivedt).to_string();
     }
 
-    r_io_utils::print_output::<TimestampData>(
-        &TimestampData {
-            // meta: meta,
-            naive: naive,
-            utc: utc
-        },
-        output_type,
-    );
+    TimestampData {
+        // meta: meta,
+        naive: naive,
+        utc: utc
+    }
 }

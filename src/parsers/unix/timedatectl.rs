@@ -1,37 +1,36 @@
-use std::io::{self, BufRead};
-
 use chrono::TimeZone;
 use serde::{Deserialize, Serialize};
 use chrono::Utc;
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct TimedatectlData {
-    // meta: Meta,
-    resources: Resources,
+pub struct TimedatectlData {
+    // pub meta: Meta,
+    pub resources: Resources,
 }
 
 // #[derive(Debug, Serialize, Deserialize)]
-// struct Meta {
+// pub struct Meta {
 // TODO:
 // }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Resources {
-    local_time: String,
-    universal_time: String,
-    rtc_time: String,
-    time_zone: String,
-    ntp_enabled: bool,
-    system_clock_synchronized: bool,
-    rtc_in_local_tz: bool,
-    epoc_utc: i64,
+pub struct Resources {
+    pub local_time: String,
+    pub universal_time: String,
+    pub rtc_time: String,
+    pub time_zone: String,
+    pub ntp_enabled: bool,
+    pub system_clock_synchronized: bool,
+    pub rtc_in_local_tz: bool,
+    pub epoc_utc: i64,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> TimedatectlData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     // let mut meta = Meta {};
 
@@ -46,8 +45,8 @@ pub fn parse(output_type: args::OutputTypes) {
         epoc_utc: 0
     };
 
-    for line in handle.lines() {
-        let mut sl = String::from(line.unwrap().trim());
+    for line in buffer.lines() {
+        let mut sl = String::from(line.trim());
         let mut field= String::from(sl.split_once(":").unwrap().0);
         field.push_str(": ");
         sl = String::from(sl.trim_start_matches(&field));
@@ -69,11 +68,8 @@ pub fn parse(output_type: args::OutputTypes) {
         }
     }
 
-    r_io_utils::print_output::<TimedatectlData>(
-        &TimedatectlData {
-            // meta: meta,
-            resources: r,
-        },
-        output_type,
-    );
+    TimedatectlData {
+        // meta: meta,
+        resources: r,
+    }
 }

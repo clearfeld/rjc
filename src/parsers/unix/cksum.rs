@@ -1,27 +1,24 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct CksumData {
-    filename: String,
-    checksum: i64,
-    blocks: i32,
+pub struct CksumData {
+    pub filename: String,
+    pub checksum: i64,
+    pub blocks: i32,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> Vec<CksumData> {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     // TODO: add flag to to not print cksum: none stdio outputs
 
     let mut cksums = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
-
+    for sl in buffer.lines() {
         if sl.starts_with("c") {
             // TODO: should this be recorded in a meta struct
             // println!("cksum: issue or directory");
@@ -39,8 +36,5 @@ pub fn parse(output_type: args::OutputTypes) {
         // println!("{}", sl);
     }
 
-    r_io_utils::print_output::<Vec<CksumData>>(
-        &cksums,
-        output_type,
-    );
+    cksums
 }

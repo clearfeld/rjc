@@ -1,51 +1,50 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct AcpiData {
+pub struct AcpiData {
     //meta: Meta,
-    resources: Vec<Resources>,
+    pub resources: Vec<Resources>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct TripPoint {
-    id: i32,
-    switches_to_mode: String,
-    temperature: f32,
-    temperature_unit: char,
+pub struct TripPoint {
+    pub id: i32,
+    pub switches_to_mode: String,
+    pub temperature: f32,
+    pub temperature_unit: char,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Resources {
+pub struct Resources {
     // all have these
-    id: i32,
-    hardware_type: String,
+    pub id: i32,
+    pub hardware_type: String,
     // Battery fields
-    state: Option<String>,
-    charge_percent: Option<i32>,
-    until_charged: Option<String>,
-    charge_remaining: Option<String>,
-    design_capacity: Option<i32>,
-    last_full_capacity: Option<i32>,
-    last_full_capacity_percent: Option<i32>,
-    charge_msg: Option<String>,
+    pub state: Option<String>,
+    pub charge_percent: Option<i32>,
+    pub until_charged: Option<String>,
+    pub charge_remaining: Option<String>,
+    pub design_capacity: Option<i32>,
+    pub last_full_capacity: Option<i32>,
+    pub last_full_capacity_percent: Option<i32>,
+    pub charge_msg: Option<String>,
     // Adapter
-    online: Option<bool>,
+    pub online: Option<bool>,
     // Thermal
-    mode: Option<String>,
-    temperature: Option<f32>,
-    temperature_unit: Option<char>,
-    trip_points: Vec<TripPoint>,
+    pub mode: Option<String>,
+    pub temperature: Option<f32>,
+    pub temperature_unit: Option<char>,
+    pub trip_points: Vec<TripPoint>,
     // cooling
-    messages: Vec<String>,
+    pub messages: Vec<String>,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> AcpiData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     let mut resources = vec![];
 
@@ -71,8 +70,7 @@ pub fn parse(output_type: args::OutputTypes) {
 
     let mut current_line = 0;
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
+    for sl in buffer.lines() {
         let line_parts_2 = sl.split_once(":").unwrap();
         let hardware_str = line_parts_2.0;
 
@@ -153,7 +151,7 @@ pub fn parse(output_type: args::OutputTypes) {
                     }
                 }
             }
-            "Adapter" => {                
+            "Adapter" => {
                 match current_line {
                     0 => {
                         current_obj.online = Some(line_parts_2.1 == " onl-line");
@@ -194,11 +192,8 @@ pub fn parse(output_type: args::OutputTypes) {
         }
     }
 
-    r_io_utils::print_output::<AcpiData>(
-        &AcpiData {
-            resources: resources,
-        },
-        output_type,
-    );
+    AcpiData {
+        resources: resources,
+    }
 }
 

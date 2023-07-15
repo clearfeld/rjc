@@ -1,25 +1,22 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct PasswdData {
+pub struct PasswdData {
     // meta: Meta,
-    resources: Vec<Resources>,
+    pub resources: Vec<Resources>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Resources {
-    username: String,
-    password: String,
-    uid: i32,
-    gid: i32,
-    comment: String,
-    home: String,
-    shell: String,
+pub struct Resources {
+    pub username: String,
+    pub password: String,
+    pub uid: i32,
+    pub gid: i32,
+    pub comment: String,
+    pub home: String,
+    pub shell: String,
 }
 
 // #[derive(Debug, Serialize, Deserialize)]
@@ -27,16 +24,17 @@ struct Resources {
 // TODO:
 // }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> PasswdData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     // let mut meta = Meta {};
     let mut resources = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
+    for sl in buffer.lines() {
         let mut line_parts = sl.trim().split(":");
-        
+
         let mut r = Resources {
             username: String::new(),
             password: String::new(),
@@ -57,11 +55,8 @@ pub fn parse(output_type: args::OutputTypes) {
         resources.push(r);
     }
 
-    r_io_utils::print_output::<PasswdData>(
-        &PasswdData {
-            // meta: meta,
-            resources: resources
-        },
-        output_type,
-    );
+    PasswdData {
+        // meta: meta,
+        resources: resources
+    }
 }

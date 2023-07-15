@@ -1,24 +1,23 @@
 use core::panic;
-use std::io::{self, BufRead};
 
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize)]
-struct DuData {
-    size: i32,
-    name: String,
+pub struct DuData {
+    pub size: i32,
+    pub name: String,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> Vec<DuData> {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     let mut du = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
+    for sl in buffer.lines() {
         // println!("{}", sl);
 
         let space_idx = match sl.find("\t") {
@@ -34,5 +33,5 @@ pub fn parse(output_type: args::OutputTypes) {
         });
     }
 
-    r_io_utils::print_output::<Vec<DuData>>(&du, output_type);
+    du
 }

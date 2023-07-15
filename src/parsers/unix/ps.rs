@@ -1,45 +1,44 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct PsData {
+pub struct PsData {
     //meta: Meta,
-    resources: Vec<Resources>,
+    pub resources: Vec<Resources>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Meta {
-    total_lines: i32,
-    total_words: i32,
-    total_characters: i32,
+pub struct Meta {
+    pub total_lines: i32,
+    pub total_words: i32,
+    pub total_characters: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Resources {
-    pid: i32,
-    tty: String,
-    stat: String,
-    time: String,
-    command: String,
+pub struct Resources {
+    pub pid: i32,
+    pub tty: String,
+    pub stat: String,
+    pub time: String,
+    pub command: String,
     //optional columns
-    ppid: Option<i32>,
-    pgid: Option<i32>,
-    winpid: Option<i32>,
-    uid: Option<i32>,
-    user: Option<String>,
-    cpu: Option<f32>,
-    mem: Option<f32>,
-    vsz: Option<i32>,
-    rss: Option<i32>,
-    start: Option<String>,
+    pub ppid: Option<i32>,
+    pub pgid: Option<i32>,
+    pub winpid: Option<i32>,
+    pub uid: Option<i32>,
+    pub user: Option<String>,
+    pub cpu: Option<f32>,
+    pub mem: Option<f32>,
+    pub vsz: Option<i32>,
+    pub rss: Option<i32>,
+    pub start: Option<String>,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> PsData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     //let mut meta = Meta {
     //};
@@ -48,9 +47,7 @@ pub fn parse(output_type: args::OutputTypes) {
 
     let mut line_one = true;
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
-
+    for sl in buffer.lines() {
         let line_parts = sl.split_whitespace();
 
         if line_one {
@@ -133,18 +130,14 @@ pub fn parse(output_type: args::OutputTypes) {
                 "START" => {
                     r.start = Some(part.to_string());
                 }
-                _ => {
-                }
+                _ => {}
             }
         }
 
         resources.push(r);
     }
 
-    r_io_utils::print_output::<PsData>(
-        &PsData {
-            resources: resources,
-        },
-        output_type,
-    );
+    PsData {
+        resources: resources,
+    }
 }

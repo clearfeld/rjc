@@ -38,46 +38,88 @@ fn main() {
         // unix
 
         args::CommandParsers::Ls(_) => {
-            parsers::unix::ls::parse(args.output);
+            r_io_utils::print_output::<unix::ls::LsData>(
+                &unix::ls::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Wc(_) => {
-            parsers::unix::wc::parse(args.output);
+            r_io_utils::print_output::<unix::wc::WcData>(
+                &unix::wc::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Du => {
-            parsers::unix::du::parse(args.output);
+            r_io_utils::print_output::<Vec<unix::du::DuData>>(
+                &unix::du::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Cksum => {
-            parsers::unix::cksum::parse(args.output);
+            r_io_utils::print_output::<Vec<unix::cksum::CksumData>>(
+                &unix::cksum::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Env => {
-            parsers::unix::env::parse(args.output);
+            r_io_utils::print_output::<Vec<unix::env::EnvData>>(
+                &unix::env::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::File => {
-            parsers::unix::file::parse(args.output);
+            r_io_utils::print_output::<Vec<unix::file::FileData>>(
+                &unix::file::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Ps(_) => {
-            parsers::unix::ps::parse(args.output);
+            r_io_utils::print_output::<unix::ps::PsData>(
+                &unix::ps::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Chage(_) => {
-            parsers::unix::chage::parse(args.output);
+            r_io_utils::print_output::<Vec<unix::chage::ChageData>>(
+                &unix::chage::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Acpi(_) => {
-            parsers::unix::acpi::parse(args.output);
+            r_io_utils::print_output::<unix::acpi::AcpiData>(
+                &unix::acpi::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Passwd(_) => {
-            parsers::unix::passwd::parse(args.output);
+            r_io_utils::print_output::<unix::passwd::PasswdData>(
+                &unix::passwd::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Shadow(_) => {
-            parsers::unix::shadow::parse(args.output);
+            r_io_utils::print_output::<unix::shadow::ShadowData>(
+                &unix::shadow::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Timestamp(_) => {
-            parsers::unix::timestamp::parse(args.output);
-        }
-        args::CommandParsers::W(_) => {
-            parsers::unix::w::parse(args.output);
+            r_io_utils::print_output::<unix::timestamp::TimestampData>(
+                &unix::timestamp::parse(None),
+                args.output
+            );
         }
         args::CommandParsers::Timedatectl(_) => {
-            parsers::unix::timedatectl::parse(args.output);
+            r_io_utils::print_output::<unix::timedatectl::TimedatectlData>(
+                &unix::timedatectl::parse(None),
+                args.output
+            );
+        }
+        args::CommandParsers::W(_) => {
+            r_io_utils::print_output::<unix::w::WData>(
+                &unix::w::parse(None),
+                args.output
+            );
         }
 
         // darwin

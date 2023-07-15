@@ -1,24 +1,21 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct FileData {
-    name: String,
-    value: String,
+pub struct FileData {
+    pub name: String,
+    pub value: String,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> Vec<FileData> {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     let mut files = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
-
+    for sl in buffer.lines() {
         let colon_idx = sl.find(":").unwrap();
 
         files.push(FileData {
@@ -27,8 +24,5 @@ pub fn parse(output_type: args::OutputTypes) {
         });
     }
 
-    r_io_utils::print_output::<Vec<FileData>>(
-        &files,
-        output_type
-    );
+    files
 }

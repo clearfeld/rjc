@@ -1,33 +1,32 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct WcData {
-    meta: Meta,
-    resources: Vec<Resources>,
+pub struct WcData {
+    pub meta: Meta,
+    pub resources: Vec<Resources>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Meta {
-    total_lines: i32,
-    total_words: i32,
-    total_characters: i32,
+pub struct Meta {
+    pub total_lines: i32,
+    pub total_words: i32,
+    pub total_characters: i32,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Resources {
-    name: String,
-    lines: i32,
-    words: i32,
-    characters: i32,
+pub struct Resources {
+    pub name: String,
+    pub lines: i32,
+    pub words: i32,
+    pub characters: i32,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> WcData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     let mut meta = Meta {
         total_lines: 0,
@@ -36,9 +35,7 @@ pub fn parse(output_type: args::OutputTypes) {
     };
     let mut resources = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
-
+    for sl in buffer.lines() {
         let mut line_parts = sl.split_whitespace();
 
         let mut r = Resources {
@@ -62,11 +59,8 @@ pub fn parse(output_type: args::OutputTypes) {
     meta.total_words = met.words;
     meta.total_characters = met.characters;
 
-    r_io_utils::print_output::<WcData>(
-        &WcData {
-            meta: meta,
-            resources: resources,
-        },
-        output_type,
-    );
+    WcData {
+        meta: meta,
+        resources: resources,
+    }
 }

@@ -1,26 +1,23 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct ShadowData {
+pub struct ShadowData {
     // meta: Meta,
-    resources: Vec<Resources>,
+    pub resources: Vec<Resources>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Resources {
-    username: String,
-    password: String,
-    last_changed: i32,
-    minimum: i32,
-    maximum: i32,
-    warn: i32,
-    inactive: Option<i32>,
-    expire: Option<i32>,
+pub struct Resources {
+    pub username: String,
+    pub password: String,
+    pub last_changed: i32,
+    pub minimum: i32,
+    pub maximum: i32,
+    pub warn: i32,
+    pub inactive: Option<i32>,
+    pub expire: Option<i32>,
 }
 
 // #[derive(Debug, Serialize, Deserialize)]
@@ -28,14 +25,15 @@ struct Resources {
 // TODO:
 // }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> ShadowData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     // let mut meta = Meta {};
     let mut resources = vec![];
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
+    for sl in buffer.lines() {
         let mut line_parts = sl.trim().split(":");
 
         let mut r = Resources {
@@ -66,11 +64,8 @@ pub fn parse(output_type: args::OutputTypes) {
         resources.push(r);
     }
 
-    r_io_utils::print_output::<ShadowData>(
-        &ShadowData {
-            // meta: meta,
-            resources: resources
-        },
-        output_type,
-    );
+    ShadowData {
+        // meta: meta,
+        resources: resources
+    }
 }

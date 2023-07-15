@@ -1,44 +1,41 @@
-use std::io::{self, BufRead};
-
 use serde::{Deserialize, Serialize};
 
-use crate::args;
 use crate::r_io_utils;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct WData {
-    // meta: Meta,
-    resources: Vec<Resources>,
+pub struct WData {
+    // pub meta: Meta,
+    pub resources: Vec<Resources>,
 }
 
 // #[derive(Debug, Serialize, Deserialize)]
-// struct Meta {
+// pub struct Meta {
 // TODO:
 // }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-struct Resources {
-    user: String,
-    tty: String,
-    from: String,
-    login_at: String,
-    idle: String,
-    jcpu: String,
-    pcpu: String,
-    what: String,
+pub struct Resources {
+    pub user: String,
+    pub tty: String,
+    pub from: String,
+    pub login_at: String,
+    pub idle: String,
+    pub jcpu: String,
+    pub pcpu: String,
+    pub what: String,
 }
 
-pub fn parse(output_type: args::OutputTypes) {
-    let handle = io::stdin().lock();
+pub fn parse(data: Option<String>) -> WData {
+    let mut buffer = String::new();
+    // TODO(clearfeld): probably should add some stronger checks when determining data source
+    r_io_utils::determine_data_source(data, &mut buffer);
 
     // let mut meta = Meta {};
     let mut resources = vec![];
 
     let mut line_num = 1;
 
-    for line in handle.lines() {
-        let sl = line.unwrap();
-
+    for sl in buffer.lines() {
         if line_num < 3 {
             // TODO think about meta struct
             line_num += 1;
@@ -73,11 +70,8 @@ pub fn parse(output_type: args::OutputTypes) {
         // println!("{}", sl);
     }
 
-    r_io_utils::print_output::<WData>(
-        &WData {
-            // meta: meta,
-            resources: resources,
-        },
-        output_type,
-    );
+    WData {
+        // meta: meta,
+        resources: resources,
+    }
 }
