@@ -115,6 +115,12 @@ fn main() {
                 args.output
             );
         }
+        args::CommandParsers::Time(_) => {
+            r_io_utils::print_output::<unix::time::TimeData>(
+                &unix::time::parse(None),
+                args.output
+            );
+        }
         args::CommandParsers::W(_) => {
             r_io_utils::print_output::<unix::w::WData>(
                 &unix::w::parse(None),
