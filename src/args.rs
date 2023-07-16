@@ -80,8 +80,9 @@ pub enum CommandParsers {
 
 #[derive(Debug, Args)]
 pub struct Dir {
-    // -w
-    // wide: Option<String>,
+    // /// "wide" command flag
+    // #[clap(short, long)]
+    // wide: bool,
 }
 
 #[derive(Debug, Args)]
@@ -145,6 +146,10 @@ pub struct W {
 #[derive(Debug, Args)]
 pub struct Airport {
     // TODO: flags
+
+    /// "s" flag
+    #[clap(short, long)]
+    s: bool,
 }
 
 #[derive(Debug, Args)]
