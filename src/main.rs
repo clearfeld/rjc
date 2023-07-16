@@ -121,6 +121,12 @@ fn main() {
                 args.output
             );
         }
+        args::CommandParsers::Ver(_) => {
+            r_io_utils::print_output::<unix::ver::VerData>(
+                &unix::ver::parse(None),
+                args.output
+            );
+        }
 
         // darwin
 
