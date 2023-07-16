@@ -49,6 +49,7 @@ pub enum CommandParsers {
     /// `acpi` command parser
     Acpi(Acpi),
     // `passwd
+    /// `passwd` command parser
     Passwd(Passwd),
     /// `shadow` command parser
     Shadow(Shadow),
@@ -64,6 +65,7 @@ pub enum CommandParsers {
     Airport(Airport),
 
     // common
+    /// `lsd` command parser
     Lsd,
 
     // formats
