@@ -5,6 +5,7 @@
     "file": "file",
     "ls": "ls",
     "passwd": "passwd",
+    "time": "time",
     "shadow": "shadow",
     "wc": "wc"
 }

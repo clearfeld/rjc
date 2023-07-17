@@ -1,0 +1,92 @@
+Usage (cli)
+
+```
+/usr/bin/time --verbose -o timefile.out sleep 2; cat timefile.out | rjc time
+```
+
+Schema
+
+```
+{
+    "resources": {
+        real_time:                    f32,
+        user_time:                    f32,
+        system_time:                  f32,
+        elapsed_time:                 String,
+        elapsed_time_hours:           i32,
+        elapsed_time_minutes:         i32,
+        elapsed_time_seconds:         i32,
+        elapsed_time_centiseconds:    i32,
+        elapsed_time_total_seconds:   f32,
+        cpu_percent:                  i32,
+        average_shared_text_size:     i32,
+        average_unshared_data_size:   i32,
+        average_unshared_stack_size:  i32,
+        average_shared_memory_size:   i32,
+        maximum_resident_set_size:    i32,
+        block_input_operations:       i32,
+        block_output_operations:      i32,
+        major_pagefaults:             i32,
+        minor_pagefaults:             i32,
+        swaps:                        i32,
+        page_reclaims:                i32,
+        page_faults:                  i32,
+        messages_sent:                i32,
+        message_received:             i32,
+        signals_received:             i32,
+        voluntary_context_switches:   i32,
+        involuntary_context_switches: i32,
+        command_being_timed:          String,
+        average_stack_size:           i32,
+        average_total_size:           i32,
+        average_resident_set_size:    i32,
+        signals_delivered:            i32,
+        page_size:                    i32,
+        exit_status:                  i32,
+    }
+}
+```
+
+Example
+
+```json
+$ /usr/bin/time --verbose -o timefile.out sleep 2; cat timefile.out | rjc -o=pretty time
+{
+    "resources": {
+        "real_time":0.0,
+        "user_time":0.0,
+        "system_time":0.0,
+        "elapsed_time":"0:02.00",
+        "elapsed_time_hours":0,
+        "elapsed_time_minutes":0,
+        "elapsed_time_seconds":2,
+        "elapsed_time_centiseconds":0,
+        "elapsed_time_total_seconds":2.0,
+        "cpu_percent":0,
+        "average_shared_text_size":0,
+        "average_unshared_data_size":0,
+        "average_unshared_stack_size":0,
+        "average_shared_memory_size":0,
+        "maximum_resident_set_size":2296,
+        "block_input_operations":0,
+        "block_output_operations":0,
+        "major_pagefaults":0,
+        "minor_pagefaults":115,
+        "swaps":0,
+        "page_reclaims":0,
+        "page_faults":0,
+        "messages_sent":0,
+        "message_received":0,
+        "signals_received":0,
+        "voluntary_context_switches":2,
+        "involuntary_context_switches":0,
+        "command_being_timed":"\"sleep 2\"",
+        "average_stack_size":0,
+        "average_total_size":0,
+        "average_resident_set_size":0,
+        "signals_delivered":0,
+        "page_size":4096,
+        "exit_status":0
+    }
+}
+```
