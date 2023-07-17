@@ -53,8 +53,6 @@ pub enum CommandParsers {
     Passwd(Passwd),
     /// `shadow` command parser
     Shadow(Shadow),
-    /// `timestamp` command parser
-    Timestamp(Timestamp),
     /// `timedatectl` command parser
     Timedatectl(Timedatectl),
     /// `time` command parser
@@ -75,6 +73,8 @@ pub enum CommandParsers {
     // formats
     /// `email address` format parser
     EmailAddress,
+    /// `timestamp` command parser
+    Timestamp(Timestamp),
     /// `version` command parser
     Version(Version),
 
@@ -128,11 +128,6 @@ pub struct Shadow {
 }
 
 #[derive(Debug, Args)]
-pub struct Timestamp {
-    // TODO: flags
-}
-
-#[derive(Debug, Args)]
 pub struct Timedatectl {
     // TODO: flags
 }
@@ -149,6 +144,11 @@ pub struct Acpi {
 
 #[derive(Debug, Args)]
 pub struct W {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Timestamp {
     // TODO: flags
 }
 

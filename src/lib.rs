@@ -31,7 +31,6 @@ pub mod parsers {
         pub mod acpi;
         pub mod passwd;
         pub mod shadow;
-        pub mod timestamp;
         pub mod time;
         pub mod timedatectl;
         pub mod w;
@@ -45,6 +44,7 @@ pub mod parsers {
     }
     pub mod formats {
         pub mod email_address;
+        pub mod timestamp;
         pub mod version;
     }
 }

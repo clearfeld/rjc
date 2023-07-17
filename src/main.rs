@@ -103,12 +103,6 @@ fn main() {
                 args.output
             );
         }
-        args::CommandParsers::Timestamp(_) => {
-            r_io_utils::print_output::<unix::timestamp::TimestampData>(
-                &unix::timestamp::parse(None),
-                args.output
-            );
-        }
         args::CommandParsers::Timedatectl(_) => {
             r_io_utils::print_output::<unix::timedatectl::TimedatectlData>(
                 &unix::timedatectl::parse(None),
@@ -158,6 +152,13 @@ fn main() {
         args::CommandParsers::EmailAddress => {
             r_io_utils::print_output::<Vec<formats::email_address::EmailAddressData>>(
                 &formats::email_address::parse(None),
+                args.output
+            );
+        }
+
+        args::CommandParsers::Timestamp(_) => {
+            r_io_utils::print_output::<formats::timestamp::TimestampData>(
+                &formats::timestamp::parse(None),
                 args.output
             );
         }
