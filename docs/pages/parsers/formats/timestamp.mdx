@@ -1,0 +1,86 @@
+Usage (cli)
+
+```
+echo 1658599410 | rjc timestamp
+```
+
+Schema
+
+```
+{
+    naive: {
+        year:         i32,
+        month:        String,
+        month_num:    u32,
+        day:          u32,
+        weekday:      String,
+        weekday_num:  u32,
+        hour:         u32,
+        hour_24:      u32,
+        minute:       u32,
+        second:       u32,
+        period:       String,
+        day_of_year:  u32,
+        week_of_year: u32,
+        iso:          String,
+    },
+    utc: {
+        year:         i32,
+        month:        String,
+        month_num:    u32,
+        day:          u32,
+        weekday:      String,
+        weekday_num:  u32,
+        hour:         u32,
+        hour_24:      u32,
+        minute:       u32,
+        second:       u32,
+        period:       String,
+        utc_offset:   String,
+        day_of_year:  u32,
+        week_of_year: u32,
+        iso:          String,
+    }
+}
+```
+
+Example
+
+```json
+$ echo 1658599410 | rjc -o=pretty timestamp
+{
+    "naive": {
+        "year": 2022,
+        "month": "Jul",
+        "month_num": 7,
+        "day": 23,
+        "weekday": "Sat",
+        "weekday_num": 6,
+        "hour": 2,
+        "hour_24": 14,
+        "minute": 3,
+        "second": 30,
+        "period": "PM",
+        "day_of_year": 204,
+        "week_of_year":29,
+        "iso": "2022-07-23T14:03:30T-04:00"
+    },
+    "utc": {
+        "year": 2022,
+        "month": "Jul",
+        "month_num": 7,
+        "day": 23,
+        "weekday": "Sat",
+        "weekday_num": 6,
+        "hour": 6,
+        "hour_24": 18,
+        "minute": 3,
+        "second": 30,
+        "period": "PM",
+        "utc_offset": "-04:00",
+        "day_of_year": 204,
+        "week_of_year": 29,
+        "iso": "2022-07-23T18:03:30"
+    }
+}
+```

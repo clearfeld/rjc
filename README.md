@@ -84,7 +84,8 @@ fn main() {
 
 ### Formats
 
-| Commands          | Documentation                                            |
-| ----------------- | -------------------------------------------------------- |
-| email-address     | [details](https://rjc.vercel.app/parsers/formats/email)  |
-| version           | [details](https://rjc.vercel.app/parsers/formats/version)  |
+| Commands          | Documentation                                               |
+| ----------------- | ----------------------------------------------------------- |
+| email-address     | [details](https://rjc.vercel.app/parsers/formats/email)     |
+| timestamp         | [details](https://rjc.vercel.app/parsers/formats/timestamp) |
+| version           | [details](https://rjc.vercel.app/parsers/formats/version)   |
