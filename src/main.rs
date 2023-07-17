@@ -127,6 +127,14 @@ fn main() {
                 args.output
             );
         }
+
+        args::CommandParsers::Ver(_) => {
+            r_io_utils::print_output::<unix::ver::VerData>(
+                &unix::ver::parse(None),
+                args.output
+            );
+        }
+        
         args::CommandParsers::Sysctl(_) => {
             r_io_utils::print_output::<unix::sysctl::SysctlData>(
                 &unix::sysctl::parse(None),

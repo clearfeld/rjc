@@ -61,6 +61,8 @@ pub enum CommandParsers {
     Time(Time),
     /// `w` command parser
     W(W),
+    /// `version` command parser
+    Ver(Ver),
     /// `sysctl` command parser
     Sysctl(Sysctl),
 
@@ -147,6 +149,11 @@ pub struct Acpi {
 
 #[derive(Debug, Args)]
 pub struct W {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Ver {
     // TODO: flags
 }
 

@@ -35,6 +35,7 @@ pub mod parsers {
         pub mod time;
         pub mod timedatectl;
         pub mod w;
+        pub mod ver;
         pub mod sysctl;
     }
     pub mod darwin { // apple osx
