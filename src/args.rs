@@ -59,6 +59,8 @@ pub enum CommandParsers {
     Timedatectl(Timedatectl),
     /// `w` command parser
     W(W),
+    /// `sysctl` command parser
+    Sysctl(Sysctl),
 
     // osx commands
     /// `airport` command parser
@@ -138,6 +140,11 @@ pub struct Acpi {
 
 #[derive(Debug, Args)]
 pub struct W {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Sysctl {
     // TODO: flags
 }
 

@@ -121,6 +121,12 @@ fn main() {
                 args.output
             );
         }
+        args::CommandParsers::Sysctl(_) => {
+            r_io_utils::print_output::<unix::sysctl::SysctlData>(
+                &unix::sysctl::parse(None),
+                args.output
+            );
+        }
 
         // darwin
 
