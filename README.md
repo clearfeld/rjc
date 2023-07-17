@@ -61,6 +61,7 @@ fn main() {
 
 | Commands     | Documentation                                                |
 | ------------ | ------------------------------------------------------------ |
+| chage        | [details](https://rjc.vercel.app/parsers/unix/chage)         |
 | cksum        | [details](https://rjc.vercel.app/parsers/unix/cksum)         |
 | du           | [details](https://rjc.vercel.app/parsers/unix/du)            |
 | env          | [details](https://rjc.vercel.app/parsers/unix/env)           |

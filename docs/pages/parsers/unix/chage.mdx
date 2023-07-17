@@ -1,0 +1,53 @@
+Usage (cli)
+
+```
+chage -l aaron | rjc chage
+```
+
+Schema
+
+```
+[
+    {
+        name:  String,
+        value: String,
+    },
+    ...
+]
+```
+
+Example
+
+```json
+$ chage -l aaron | rjc -o=pretty chage
+[
+    {
+        "name": "Last password change",
+        "value": "Oct 14, 2022"
+    },
+    {
+        "name": "Password expires",
+        "value": "never"
+    },
+    {
+        "name": "Password inactive",
+        "value": "never"
+    },
+    {
+        "name": "Account expires",
+        "value": "never"
+    },
+    {
+        "name": "Minimum number of days between password change",
+        "value": "0"
+    },
+    {
+        "name": "Maximum number of days between password change",
+        "value": "99999"
+    },
+    {
+        "name": "Number of days of warning before password expires",
+        "value": "7"
+    }
+]
+```
