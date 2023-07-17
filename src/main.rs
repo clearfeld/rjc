@@ -115,15 +115,29 @@ fn main() {
                 args.output
             );
         }
+        args::CommandParsers::Time(_) => {
+            r_io_utils::print_output::<unix::time::TimeData>(
+                &unix::time::parse(None),
+                args.output
+            );
+        }
         args::CommandParsers::W(_) => {
             r_io_utils::print_output::<unix::w::WData>(
                 &unix::w::parse(None),
                 args.output
             );
         }
+
         args::CommandParsers::Ver(_) => {
             r_io_utils::print_output::<unix::ver::VerData>(
                 &unix::ver::parse(None),
+                args.output
+            );
+        }
+        
+        args::CommandParsers::Sysctl(_) => {
+            r_io_utils::print_output::<unix::sysctl::SysctlData>(
+                &unix::sysctl::parse(None),
                 args.output
             );
         }

@@ -55,12 +55,16 @@ pub enum CommandParsers {
     Shadow(Shadow),
     /// `timestamp` command parser
     Timestamp(Timestamp),
-    /// `timestamp` command parser
+    /// `timedatectl` command parser
     Timedatectl(Timedatectl),
+    /// `time` command parser
+    Time(Time),
     /// `w` command parser
     W(W),
     /// `version` command parser
     Ver(Ver),
+    /// `sysctl` command parser
+    Sysctl(Sysctl),
 
     // osx commands
     /// `airport` command parser
@@ -134,6 +138,11 @@ pub struct Timedatectl {
 }
 
 #[derive(Debug, Args)]
+pub struct Time {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
 pub struct Acpi {
     // TODO: flags
 }
@@ -145,6 +154,11 @@ pub struct W {
 
 #[derive(Debug, Args)]
 pub struct Ver {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Sysctl {
     // TODO: flags
 }
 
