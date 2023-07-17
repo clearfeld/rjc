@@ -86,3 +86,4 @@ fn main() {
 | Commands          | Documentation                                            |
 | ----------------- | -------------------------------------------------------- |
 | email-address     | [details](https://rjc.vercel.app/parsers/formats/email)  |
+| version           | [details](https://rjc.vercel.app/parsers/formats/version)  |

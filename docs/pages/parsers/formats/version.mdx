@@ -1,0 +1,40 @@
+Usage (cli)
+
+```
+echo v1.2.3a4 | rjc version
+```
+
+Schema
+
+```
+{
+    "resources": {
+        "major":      i32,
+        "minor":      i32,
+        "patch":      i32,
+        "prerelease": String,
+        "strict":     bool,
+        "components": Vec<String>
+    }
+}
+```
+
+Example
+
+```json
+$ echo v1.2.3a4 | rjc -o=pretty version
+{
+  "resources": {
+    "major": 1,
+    "minor": 2,
+    "patch": 0,
+    "prerelease": "3a4",
+    "strict": true,
+    "components": [
+      "1",
+      "2",
+      "3a4"
+    ]
+  }
+}
+```
