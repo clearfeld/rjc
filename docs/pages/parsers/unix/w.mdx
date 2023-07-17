@@ -1,0 +1,46 @@
+Usage (cli)
+
+```
+w | rjc w
+```
+
+Schema
+
+```
+{
+    "resources": [
+        {
+            "user":     String,
+            "tty":      String,
+            "from":     String,
+            "login_at": String,
+            "idle":     String,
+            "jcpu":     String,
+            "pcpu":     String,
+            "what":     String,
+        },
+        ...
+    ]
+}
+```
+
+Example
+
+```json
+$ w | rjc -o=pretty w
+{
+    "resources": [
+        {
+            "user": "aaron",
+            "tty": "tty1",
+            "from": ":0",
+            "login_at": "Wed11",
+            "idle": "119days",
+            "jcpu": "1:32m",
+            "pcpu": "0.05s",
+            "what": "/usr/bin/startplasma-x11"
+        }
+        ...
+    ]
+}
+```

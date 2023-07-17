@@ -8,5 +8,6 @@
     "time": "time",
     "timedatectl": "timedatectl",
     "shadow": "shadow",
+    "w": "w",
     "wc": "wc"
 }
