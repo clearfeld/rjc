@@ -34,6 +34,7 @@ pub mod parsers {
         pub mod timestamp;
         pub mod timedatectl;
         pub mod w;
+        pub mod sysctl;
     }
     pub mod darwin { // apple osx
         pub mod airport;
