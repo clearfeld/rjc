@@ -55,8 +55,10 @@ pub enum CommandParsers {
     Shadow(Shadow),
     /// `timestamp` command parser
     Timestamp(Timestamp),
-    /// `timestamp` command parser
+    /// `timedatectl` command parser
     Timedatectl(Timedatectl),
+    /// `time` command parser
+    Time(Time),
     /// `w` command parser
     W(W),
     /// `sysctl` command parser
@@ -130,6 +132,11 @@ pub struct Timestamp {
 
 #[derive(Debug, Args)]
 pub struct Timedatectl {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Time {
     // TODO: flags
 }
 
