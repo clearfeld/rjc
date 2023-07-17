@@ -61,8 +61,6 @@ pub enum CommandParsers {
     Time(Time),
     /// `w` command parser
     W(W),
-    /// `version` command parser
-    Ver(Ver),
     /// `sysctl` command parser
     Sysctl(Sysctl),
 
@@ -77,6 +75,8 @@ pub enum CommandParsers {
     // formats
     /// `email address` format parser
     EmailAddress,
+    /// `version` command parser
+    Version(Version),
 
     /// `ps` command parser
     Ps(Ps),
@@ -153,7 +153,7 @@ pub struct W {
 }
 
 #[derive(Debug, Args)]
-pub struct Ver {
+pub struct Version {
     // TODO: flags
 }
 

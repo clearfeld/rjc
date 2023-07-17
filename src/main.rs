@@ -128,13 +128,6 @@ fn main() {
             );
         }
 
-        args::CommandParsers::Ver(_) => {
-            r_io_utils::print_output::<unix::ver::VerData>(
-                &unix::ver::parse(None),
-                args.output
-            );
-        }
-        
         args::CommandParsers::Sysctl(_) => {
             r_io_utils::print_output::<unix::sysctl::SysctlData>(
                 &unix::sysctl::parse(None),
@@ -165,6 +158,13 @@ fn main() {
         args::CommandParsers::EmailAddress => {
             r_io_utils::print_output::<Vec<formats::email_address::EmailAddressData>>(
                 &formats::email_address::parse(None),
+                args.output
+            );
+        }
+
+        args::CommandParsers::Version(_) => {
+            r_io_utils::print_output::<formats::version::VerData>(
+                &formats::version::parse(None),
                 args.output
             );
         }

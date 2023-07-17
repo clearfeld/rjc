@@ -35,7 +35,7 @@ fn split_minor_str(str: String) -> (String, String) {
     if starting_char.is_numeric() {
         string_split.0 = String::from(minor_split.0);
         string_split.1 = String::from(minor_split.1);
-    } 
+    }
     else {
         string_split.0 = String::from(minor_split.1);
         string_split.1 = String::from(minor_split.0);
@@ -70,7 +70,7 @@ pub fn parse(data: Option<String>) -> VerData {
             sl = sl.trim_start_matches("v");
         }
         let mut line_parts = sl.trim().split(".");
-        
+
         let component = line_parts.next().unwrap();
         resources.components.push(String::from(component));
         let major_str = component.parse::<i32>();
@@ -92,7 +92,7 @@ pub fn parse(data: Option<String>) -> VerData {
                 let minor_split = split_minor_str(String::from(minor_str));
                 if minor_split.0.parse::<i32>().is_ok() {
                     resources.minor = minor_split.0.parse::<i32>().unwrap();
-                } 
+                }
                 else {
                     resources.strict = false;
                 }
@@ -105,7 +105,7 @@ pub fn parse(data: Option<String>) -> VerData {
                 resources.components.push(String::from(patch_str));
                 if patch_str.parse::<i32>().is_ok() {
                     resources.patch = patch_str.parse::<i32>().unwrap();
-                } 
+                }
                 else {
                     resources.prerelease = String::from(patch_str);
                     patch = line_parts.next();
