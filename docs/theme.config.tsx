@@ -13,7 +13,7 @@ const config: DocsThemeConfig = {
   // chat: {
   //   link: 'https://discord.com',
   // },
-  docsRepositoryBase: 'https://github.com/clearfeld/rjc/docs',
+  docsRepositoryBase: 'https://github.com/clearfeld/rjc/tree/main/docs',
   primaryHue: 29,
   footer: {
     text: 'RJC',
