@@ -66,6 +66,7 @@ fn main() {
 | env       | [details](https://rjc.vercel.app/parsers/unix/env)    |
 | file      | [details](https://rjc.vercel.app/parsers/unix/file)   |
 | ls        | [details](https://rjc.vercel.app/parsers/unix/ls)     |
+| passwd    | [details](https://rjc.vercel.app/parsers/unix/passwd) |
 | shadow    | [details](https://rjc.vercel.app/parsers/unix/shadow) |
 | wc        | [details](https://rjc.vercel.app/parsers/unix/wc)     |
 

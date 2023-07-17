@@ -1,0 +1,54 @@
+Usage (cli)
+
+```
+cat /etc/passwd | rjc --passwd
+```
+
+Schema
+
+```
+{
+    "resources": [
+        {
+            username: String,
+            password: String,
+            uid:      i32,
+            gid:      i32,
+            comment:  String,
+            home:     String,
+            shell:    String,
+        }
+
+        ...
+    ]
+}
+```
+
+Example
+
+```json
+$ cat /etc/passwd | rjc -o=pretty passwd
+{
+    "resources": [
+        {
+            "username": "nobody",
+            "password": "*",
+            "uid": -2,
+            "gid": -2,
+            "comment": "Unprivileged User",
+            "home": "/var/empty",
+            "shell": "/usr/bin/false"
+        },
+        {
+            "username": "root",
+            "password": "*",
+            "uid": 0,
+            "gid": 0,
+            "comment": "System Administrator",
+            "home": "/var/root",
+            "shell": "/bin/sh"
+        },
+        ...
+    ]
+}
+```

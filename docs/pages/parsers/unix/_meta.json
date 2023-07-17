@@ -4,6 +4,7 @@
     "env": "env",
     "file": "file",
     "ls": "ls",
+    "passwd": "passwd",
     "shadow": "shadow",
     "wc": "wc"
 }
