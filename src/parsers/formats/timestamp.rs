@@ -132,9 +132,9 @@ pub fn parse(data: Option<String>) -> TimestampData {
     for sl in buffer.lines() {
         let timestamp = sl.parse::<i64>().unwrap();
 
-        let naivedt = NaiveDateTime::from_timestamp(timestamp, (timestamp % 1) as u32 * 1_000_000);
+        let utcdt = NaiveDateTime::from_timestamp_opt(timestamp, (timestamp % 1) as u32 * 1_000_000).unwrap();
 
-        let utcdt: DateTime<Local> = Local.from_utc_datetime(&naivedt);
+        let naivedt: DateTime<Local> = Local.from_utc_datetime(&utcdt);
 
         naive.year = naivedt.year();
         utc.year = utcdt.year();
@@ -177,7 +177,7 @@ pub fn parse(data: Option<String>) -> TimestampData {
         utc.iso = utcdt.to_string().replace(" ", "T");
         utc.day_of_year = utcdt.ordinal();
         utc.week_of_year = utcdt.ordinal()/7;
-        utc.utc_offset = Local.offset_from_utc_datetime(&naivedt).to_string();
+        utc.utc_offset = Local.offset_from_utc_datetime(&utcdt).to_string();
     }
 
     TimestampData {
