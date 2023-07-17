@@ -1,0 +1,40 @@
+Usage (cli)
+
+```
+timedatectl | rjc timedatectl
+```
+
+Schema
+
+```
+{
+    "resources": {
+        local_time:                String,
+        universal_time:            String,
+        rtc_time:                  String,
+        time_zone:                 String,
+        ntp_enabled:               bool,
+        system_clock_synchronized: bool,
+        rtc_in_local_tz:           bool,
+        epoc_utc:                  i64,
+    }
+}
+```
+
+Example
+
+```json
+$ timedatectl | rjc -o=pretty timedatectl
+{
+    "resources": {
+        "local_time": "Mon 2023-07-17 18:51:18 EDT",
+        "universal_time": "Mon 2023-07-17 22:51:18 UTC",
+        "rtc_time": "Mon 2023-07-17 22:51:18",
+        "time_zone": "America/Toronto (EDT, -0400)",
+        "ntp_enabled": false,
+        "system_clock_synchronized": true,
+        "rtc_in_local_tz": false,
+        "epoc_utc": 1689634278
+    }
+}
+```

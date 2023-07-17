@@ -59,17 +59,18 @@ fn main() {
 
 ### Unix
 
-| Commands  | Documentation                                         |
-| --------- | ----------------------------------------------------- |
-| cksum     | [details](https://rjc.vercel.app/parsers/unix/cksum)  |
-| du        | [details](https://rjc.vercel.app/parsers/unix/du)     |
-| env       | [details](https://rjc.vercel.app/parsers/unix/env)    |
-| file      | [details](https://rjc.vercel.app/parsers/unix/file)   |
-| ls        | [details](https://rjc.vercel.app/parsers/unix/ls)     |
-| passwd    | [details](https://rjc.vercel.app/parsers/unix/passwd) |
-| time      | [details](https://rjc.vercel.app/parsers/unix/time)   |
-| shadow    | [details](https://rjc.vercel.app/parsers/unix/shadow) |
-| wc        | [details](https://rjc.vercel.app/parsers/unix/wc)     |
+| Commands     | Documentation                                                |
+| ------------ | ------------------------------------------------------------ |
+| cksum        | [details](https://rjc.vercel.app/parsers/unix/cksum)         |
+| du           | [details](https://rjc.vercel.app/parsers/unix/du)            |
+| env          | [details](https://rjc.vercel.app/parsers/unix/env)           |
+| file         | [details](https://rjc.vercel.app/parsers/unix/file)          |
+| ls           | [details](https://rjc.vercel.app/parsers/unix/ls)            |
+| passwd       | [details](https://rjc.vercel.app/parsers/unix/passwd)        |
+| time         | [details](https://rjc.vercel.app/parsers/unix/time)          |
+| timedatectl  | [details](https://rjc.vercel.app/parsers/unix/timedatectl)   |
+| shadow       | [details](https://rjc.vercel.app/parsers/unix/shadow)        |
+| wc           | [details](https://rjc.vercel.app/parsers/unix/wc)            |
 
 ### Darwin
 

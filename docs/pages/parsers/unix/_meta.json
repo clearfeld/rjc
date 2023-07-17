@@ -6,6 +6,7 @@
     "ls": "ls",
     "passwd": "passwd",
     "time": "time",
+    "timedatectl": "timedatectl",
     "shadow": "shadow",
     "wc": "wc"
 }
