@@ -1,8 +1,14 @@
 # v0.2.2 UNRELEASED
 
+*
+
+# v0.2.2
+
 * unix sysctl parser
 * format version parser
 * unix time parser
+* moved ver parser to formats
+* moved timestamp parser to formats
 
 # v0.2.1
 
