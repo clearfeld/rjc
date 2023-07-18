@@ -8,7 +8,12 @@ homepage = "https://rjc.vercel.app/"
 repository = "https://github.com/clearfeld/rjc"
 keywords = ["cli"]
 categories = ["command-line-utilities", "text-processing", "parser-implementations", "parsing-tools"]
-# TODO excludes
+
+exclude = ["/docs"]
+
+# TODO: investigate
+# [lib]
+# crate-type = ["lib", "cdylib"] # generate dynamic dll for none rust langs as well
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
