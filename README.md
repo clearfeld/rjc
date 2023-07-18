@@ -71,6 +71,7 @@ fn main() {
 | time         | [details](https://rjc.vercel.app/parsers/unix/time)          |
 | timedatectl  | [details](https://rjc.vercel.app/parsers/unix/timedatectl)   |
 | shadow       | [details](https://rjc.vercel.app/parsers/unix/shadow)        |
+| sysctl       | [details](https://rjc.vercel.app/parsers/unix/sysctl)        |
 | w            | [details](https://rjc.vercel.app/parsers/unix/w)             |
 | wc           | [details](https://rjc.vercel.app/parsers/unix/wc)            |
 

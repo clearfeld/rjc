@@ -9,6 +9,7 @@
     "time": "time",
     "timedatectl": "timedatectl",
     "shadow": "shadow",
+    "sysctl": "sysctl",
     "w": "w",
     "wc": "wc"
 }

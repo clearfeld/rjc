@@ -1,0 +1,32 @@
+Usage (cli)
+
+```
+sysctl -a | rjc sysctl
+```
+
+Schema
+
+```
+{
+    "resources": {
+        "key1": String,
+        "key2": String,
+        "key3": String,
+        ...
+    }
+}
+```
+
+Example
+
+```json
+$ sysctl -a | rjc -o=pretty sysctl
+{
+    "resources":{
+        "kernel.random.uuid": "a7621fac-3aab-4c5f-8027-4fdc5db3cd09",
+        "vm.dirty_ratio": "20",
+        "net.ipv4.conf.lo.accept_source_route": "0",
+        ...
+    }
+}
+```
