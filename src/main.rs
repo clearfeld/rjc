@@ -129,6 +129,13 @@ fn main() {
             );
         }
 
+        args::CommandParsers::Date(_) => {
+            r_io_utils::print_output::<unix::date::DateData>(
+                &unix::date::parse(None),
+                args.output
+            );
+        }
+
         // darwin
 
         args::CommandParsers::Airport(_) => {
