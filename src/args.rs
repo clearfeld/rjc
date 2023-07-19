@@ -61,6 +61,8 @@ pub enum CommandParsers {
     W(W),
     /// `sysctl` command parser
     Sysctl(Sysctl),
+    /// `date` command parser
+    Date(Date),
 
     // osx commands
     /// `airport` command parser
@@ -159,6 +161,11 @@ pub struct Version {
 
 #[derive(Debug, Args)]
 pub struct Sysctl {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Date {
     // TODO: flags
 }
 
