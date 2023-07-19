@@ -1,6 +1,6 @@
-use std::{ops::Add, collections::HashMap};
+use std::ops::Add;
 
-use chrono::{TimeZone, DateTime, Duration, Datelike, Timelike};
+use chrono::{DateTime, Duration, Datelike, Timelike};
 use serde::{Deserialize, Serialize};
 
 use crate::r_io_utils;
@@ -68,17 +68,13 @@ pub fn parse(data: Option<String>) -> DateData {
         let period = date_split.next_back().unwrap();
         let mut date_str = String::from(sl.trim_end_matches(timezone).trim());
         date_str = String::from(date_str.trim_end_matches(period).trim());
-        println!("444444444444444444444444444 {:?}", date_str);
 
-        //let date = NaiveDateTime::parse_from_str(date_str.as_str(), "%a %d %b %Y %H:%M:%S").unwrap();
         let datetime_str = String::from(date_str) + " " + chrono::Local::now().offset().to_string().as_str();
         let mut date = DateTime::parse_from_str(datetime_str.as_str(), "%a %d %b %Y %H:%M:%S %:z").unwrap();
-        //date.and_local_timezone(tz)
-        //date.with_timezone(&EST);
+
         if period == "PM" {
             date = date.add(Duration::hours(12));
         }
-        println!("123123123123123123123123123123123123123123123123123123123123123 {:?}", date);
         r.year = date.year();
         r.month_num = date.month();
         match date.month() {
@@ -147,8 +143,6 @@ pub fn parse(data: Option<String>) -> DateData {
         r.day_of_year = date.ordinal();
 
         r.iso = format!("{}-{}-{}T{}:{}:{}{}", r.year, r.month_num, r.day, r.hour_24, r.minute, r.second, r.utc_offset);
-
-        //let mut field= String::from(sl.split_once(":").unwrap().0);
     }
 
     r
