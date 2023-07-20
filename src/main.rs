@@ -177,6 +177,13 @@ fn main() {
             );
         }
 
+        args::CommandParsers::Semver(_) => {
+            r_io_utils::print_output::<formats::semver::SemverData>(
+                &formats::semver::parse(None),
+                args.output
+            );
+        }
+
     }
 
     // TODO: find ansi term color crate
