@@ -47,5 +47,6 @@ pub mod parsers {
         pub mod email_address;
         pub mod timestamp;
         pub mod version;
+        pub mod semver;
     }
 }

@@ -79,6 +79,8 @@ pub enum CommandParsers {
     Timestamp(Timestamp),
     /// `version` command parser
     Version(Version),
+    /// `semver` command parser
+    Semver(Semver),
 
     /// `ps` command parser
     Ps(Ps),
@@ -182,5 +184,10 @@ pub struct Airport {
 
 #[derive(Debug, Args)]
 pub struct Passwd {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Semver {
     // TODO: flags
 }
