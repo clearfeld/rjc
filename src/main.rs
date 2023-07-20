@@ -136,6 +136,13 @@ fn main() {
             );
         }
 
+        args::CommandParsers::Arp(_) => {
+            r_io_utils::print_output::<unix::arp::ArpData>(
+                &unix::arp::parse(None),
+                args.output
+            );
+        }
+
         // darwin
 
         args::CommandParsers::Airport(_) => {
