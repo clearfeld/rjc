@@ -136,6 +136,31 @@ fn main() {
             );
         }
 
+        args::CommandParsers::Systemctl(_) => {
+            r_io_utils::print_output::<unix::systemctl::SystemctlData>(
+                &unix::systemctl::parse(None),
+                args.output
+            );
+        }
+        args::CommandParsers::SystemctlLJ(_) => {
+            r_io_utils::print_output::<unix::systemctl_lj::SystemctlLJData>(
+                &unix::systemctl_lj::parse(None),
+                args.output
+            );
+        }
+        args::CommandParsers::SystemctlLS(_) => {
+            r_io_utils::print_output::<unix::systemctl_ls::SystemctlLSData>(
+                &unix::systemctl_ls::parse(None),
+                args.output
+            );
+        }
+        args::CommandParsers::SystemctlLUF(_) => {
+            r_io_utils::print_output::<unix::systemctl_luf::SystemctlLUFData>(
+                &unix::systemctl_luf::parse(None),
+                args.output
+            );
+        }
+
         // darwin
 
         args::CommandParsers::Airport(_) => {
