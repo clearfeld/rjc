@@ -36,6 +36,10 @@ pub mod parsers {
         pub mod w;
         pub mod sysctl;
         pub mod date;
+        pub mod systemctl;
+        pub mod systemctl_lj;
+        pub mod systemctl_ls;
+        pub mod systemctl_luf;
         pub mod arp;
     }
     pub mod darwin { // apple osx

@@ -63,6 +63,14 @@ pub enum CommandParsers {
     Sysctl(Sysctl),
     /// `date` command parser
     Date(Date),
+    /// `systemctl` command parser
+    Systemctl(Systemctl),
+    /// `systemctl_lj` command parser
+    SystemctlLJ(SystemctlLJ),
+    /// `systemctl_ls` command parser
+    SystemctlLS(SystemctlLS),
+    /// `systemctl_luf` command parser
+    SystemctlLUF(SystemctlLUF),
     /// `arp` command parser
     Arp(Arp),
 
@@ -170,6 +178,26 @@ pub struct Sysctl {
 
 #[derive(Debug, Args)]
 pub struct Date {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Systemctl {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct SystemctlLJ {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct SystemctlLS {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct SystemctlLUF {
     // TODO: flags
 }
 
