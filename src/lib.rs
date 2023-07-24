@@ -36,6 +36,7 @@ pub mod parsers {
         pub mod w;
         pub mod sysctl;
         pub mod date;
+        pub mod arp;
     }
     pub mod darwin { // apple osx
         pub mod airport;
