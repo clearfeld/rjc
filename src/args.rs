@@ -71,6 +71,8 @@ pub enum CommandParsers {
     SystemctlLS(SystemctlLS),
     /// `systemctl_luf` command parser
     SystemctlLUF(SystemctlLUF),
+    /// `arp` command parser
+    Arp(Arp),
 
     // osx commands
     /// `airport` command parser
@@ -196,6 +198,11 @@ pub struct SystemctlLS {
 
 #[derive(Debug, Args)]
 pub struct SystemctlLUF {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Arp {
     // TODO: flags
 }
 

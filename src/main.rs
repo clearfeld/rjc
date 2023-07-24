@@ -154,9 +154,17 @@ fn main() {
                 args.output
             );
         }
+      
         args::CommandParsers::SystemctlLUF(_) => {
             r_io_utils::print_output::<unix::systemctl_luf::SystemctlLUFData>(
                 &unix::systemctl_luf::parse(None),
+                args.output
+            );
+        }
+
+        args::CommandParsers::Arp(_) => {
+            r_io_utils::print_output::<unix::arp::ArpData>(
+                &unix::arp::parse(None),
                 args.output
             );
         }
