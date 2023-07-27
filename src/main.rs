@@ -187,6 +187,13 @@ fn main() {
             );
         }
 
+        args::CommandParsers::Ping => {
+            r_io_utils::print_output::<common::ping::PingData>(
+                &common::ping::parse(None),
+                args.output
+            );
+        }
+
         // formats
 
         args::CommandParsers::EmailAddress => {
