@@ -42,6 +42,7 @@ pub mod parsers {
     }
     pub mod common {
         pub mod lsd;
+        pub mod ping;
     }
     pub mod formats {
         pub mod email_address;

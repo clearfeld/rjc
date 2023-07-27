@@ -84,6 +84,8 @@ pub enum CommandParsers {
 
     /// `ps` command parser
     Ps(Ps),
+    /// `ping` command parser
+    Ping,
 }
 
 // win32
@@ -189,5 +191,10 @@ pub struct Passwd {
 
 #[derive(Debug, Args)]
 pub struct Semver {
+    // TODO: flags
+}
+
+#[derive(Debug, Args)]
+pub struct Ping {
     // TODO: flags
 }
