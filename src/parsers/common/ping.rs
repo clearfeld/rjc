@@ -105,7 +105,6 @@ pub fn parse(data: Option<String>) -> PingData {
             continue
         }
         else if sl.starts_with("Pinging") {
-            println!("222222222222222222222222222222222 {}", sl);
             // Windows
             sl = sl.trim_start_matches("Pinging ");
             let mut line_parts = sl.split_whitespace();
