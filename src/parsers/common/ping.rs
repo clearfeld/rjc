@@ -105,6 +105,7 @@ pub fn parse(data: Option<String>) -> PingData {
             continue
         }
         else if sl.starts_with("Pinging") {
+            println!("222222222222222222222222222222222 {}", sl);
             // Windows
             sl = sl.trim_start_matches("Pinging ");
             let mut line_parts = sl.split_whitespace();
@@ -137,6 +138,15 @@ pub fn parse(data: Option<String>) -> PingData {
             };
             let mut response_split = sl.split_whitespace();
             let bytes = response_split.next().unwrap();
+            if bytes == "Reply" { // Windows
+                response_split.next();
+                response_split.next();
+                let response_time = response_split.next().unwrap();
+                let time_split = response_time.split_once('=').unwrap();
+                response.time_ms = time_split.1.trim_end_matches("ms").parse::<f64>().unwrap();
+                data.responses.push(response);
+                continue;
+            }
             response.bytes = bytes.parse::<i32>().unwrap();
             response_split.next();
             response_split.next();
@@ -193,7 +203,7 @@ pub fn parse(data: Option<String>) -> PingData {
                 data.packet_loss_percent = line_parts.next().unwrap().trim_end_matches("%").trim_start_matches("(").parse::<f64>().unwrap();
 
             }
-            else if sl.starts_with("Minimum = ") {
+            else if sl.trim().starts_with("Minimum = ") {
                 // Minimum = 14ms, Maximum = 16ms, Average = 15ms
                 let mut line_parts = sl.split_whitespace();
                 line_parts.next();
@@ -207,6 +217,22 @@ pub fn parse(data: Option<String>) -> PingData {
                 data.round_trip_as_avg = String::from(line_parts.next().unwrap()).trim_end_matches("ms").parse::<f64>().unwrap();
                 
             }
+            else if sl.trim().starts_with("Packets") {
+                //     Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),
+                let mut line_parts = sl.split_whitespace();
+                line_parts.next();
+                line_parts.next();
+                line_parts.next();
+                data.packets_transmitted = line_parts.next().unwrap().trim_end_matches(',').parse::<i32>().unwrap();
+                line_parts.next();
+                line_parts.next();
+                data.packets_received = line_parts.next().unwrap().trim_end_matches(',').parse::<i32>().unwrap();
+                line_parts.next();
+                line_parts.next();
+                let percent = line_parts.next().unwrap().trim_matches(|c| c == '(' || c == '%');
+                data.total_time_ms = percent.parse::<i32>().unwrap();
+
+            }
             else {
                 // 3 packets transmitted, 3 received, 0% packet loss, time 2003ms
                 let mut line_parts = sl.split_whitespace();
@@ -215,7 +241,7 @@ pub fn parse(data: Option<String>) -> PingData {
                 line_parts.next();
                 data.packets_received = line_parts.next().unwrap().parse::<i32>().unwrap();
                 line_parts.next();
-                data.packet_loss_percent = line_parts.next().unwrap().trim_end_matches("%").parse::<f64>().unwrap();
+                data.packet_loss_percent = line_parts.next().unwrap().trim_end_matches('%').parse::<f64>().unwrap();
                 line_parts.next();
                 line_parts.next();
                 line_parts.next();
