@@ -130,7 +130,7 @@ pub fn parse(data: Option<String>) -> TimestampData {
     };
 
     for sl in buffer.lines() {
-        let timestamp = sl.parse::<i64>().unwrap();
+        let timestamp = sl.trim().parse::<i64>().unwrap();
 
         let utcdt = NaiveDateTime::from_timestamp_opt(timestamp, (timestamp % 1) as u32 * 1_000_000).unwrap();
 
