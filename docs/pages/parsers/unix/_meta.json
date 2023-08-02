@@ -2,6 +2,7 @@
     "arp": "arp",
     "chage": "chage",
     "cksum": "cksum",
+    "date": "date",
     "du": "du",
     "env": "env",
     "file": "file",

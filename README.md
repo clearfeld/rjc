@@ -64,6 +64,7 @@ fn main() {
 | arp          | [details](https://rjc.vercel.app/parsers/unix/arp)           |
 | chage        | [details](https://rjc.vercel.app/parsers/unix/chage)         |
 | cksum        | [details](https://rjc.vercel.app/parsers/unix/cksum)         |
+| date         | [details](https://rjc.vercel.app/parsers/unix/date)          |
 | du           | [details](https://rjc.vercel.app/parsers/unix/du)            |
 | env          | [details](https://rjc.vercel.app/parsers/unix/env)           |
 | file         | [details](https://rjc.vercel.app/parsers/unix/file)          |

@@ -1,6 +1,7 @@
 # v0.2.3 UNRELEASED
 
 * added unix arp parser
+* added unix date parser
 
 # v0.2.2
 

@@ -1,0 +1,56 @@
+Usage (cli)
+
+```
+date | rjc date
+```
+
+Schema
+
+```
+{
+    year:         i32,
+    month:        String,
+    month_num:    u32,
+    day:          u32,
+    weekday:      String,
+    weekday_num:  u32,
+    hour:         u32,
+    hour_24:      u32,
+    minute:       u32,
+    second:       u32,
+    period:       String,
+    timezone:     String,
+    utc_offset:   String,
+    day_of_year:  u32,
+    week_of_year: u32,
+    iso:          String,
+    epoch:        i64,
+    epoch_utc:    i64
+}
+```
+
+Example
+
+```json
+$ date | rjc -o=pretty date
+{
+    "year": 2023,
+    "month": "Jul",
+    "month_num": 7,
+    "day": 18,
+    "weekday": "Tue",
+    "weekday_num": 2,
+    "hour": 8,
+    "hour_24": 20,
+    "minute": 31,
+    "second": 41,
+    "period": "PM",
+    "timezone": "EDT",
+    "utc_offset": "-04:00",
+    "day_of_year": 199,
+    "week_of_year": 29,
+    "iso": "2023-7-18T20:31:41-04:00",
+    "epoch": 1689726701,
+    "epoch_utc": 1689712301
+}
+```
