@@ -1,5 +1,6 @@
 {
     "email": "Email Address",
+    "semver": "Semver",
     "timestamp": "Timestamp",
     "version": "Version"
 }

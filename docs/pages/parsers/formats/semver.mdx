@@ -1,0 +1,30 @@
+Usage (cli)
+
+```
+echo 1.2.3-rc.1+44837 | rjc semver
+```
+
+Schema
+
+```
+{
+    major:      i32,
+    minor:      i32,
+    patch:      i32,
+    prerelease: Option<String>,
+    build:      Option<String>,
+}
+```
+
+Example
+
+```json
+$ echo 1.2.3-rc.1+44837 | rjc -o=pretty semver
+{
+    "major": 1,
+    "minor": 2,
+    "patch": 3,
+    "prerelease": "rc.1",
+    "build": "44837"
+}
+```

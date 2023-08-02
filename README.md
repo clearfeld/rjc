@@ -96,5 +96,6 @@ fn main() {
 | Commands          | Documentation                                               |
 | ----------------- | ----------------------------------------------------------- |
 | email-address     | [details](https://rjc.vercel.app/parsers/formats/email)     |
+| semver            | [details](https://rjc.vercel.app/parsers/formats/semver)    |
 | timestamp         | [details](https://rjc.vercel.app/parsers/formats/timestamp) |
 | version           | [details](https://rjc.vercel.app/parsers/formats/version)   |
