@@ -1,0 +1,88 @@
+Usage (cli)
+
+```
+acpi -V | rjc acpi
+```
+
+Schema
+
+```
+{
+    resources: [
+        {
+            id:                         i32,
+            hardware_type:              String,
+            state:                      Option<String>,
+            charge_percent:             Option<i32>,
+            until_charged:              Option<String>,
+            charge_remaining:           Option<String>,
+            design_capacity:            Option<i32>,
+            last_full_capacity:         Option<i32>,
+            last_full_capacity_percent: Option<i32>,
+            charge_msg:                 Option<String>,
+            online:                     Option<bool>,
+            mode:                       Option<String>,
+            temperature:                Option<f32>,
+            temperature_unit:           Option<char>,
+            trip_points: [              // Vec<TripPoint>,
+                {
+                    id:               i32,
+                    switches_to_mode: String,
+                    temperature:      f32,
+                    temperature_unit: char,
+                }
+                ...
+            ],
+            messages:                   Vec<String>,
+        }
+        ...
+    ]
+}
+```
+
+Example
+
+```json
+$ acpi -V | rjc -o=pretty acpi
+{
+    "resources": [
+        {
+            "id": 0,
+            "hardware_type": "Battery",
+            "state": "Discharging",
+            "charge_percent": 83,
+            "until_charged": null,
+            "charge_remaining": "05:13:02",
+            "design_capacity": 9694,
+            "last_full_capacity": 8994,
+            "last_full_capacity_percent": 92,
+            "charge_msg": null,
+            "online": null,
+            "mode": null,
+            "temperature": null,
+            "temperature_unit": null,
+            "trip_points": [],
+            "messages": []
+        },
+        {
+            "id": 0,
+            "hardware_type": "Adapter",
+            "state": null,
+            "charge_percent": null,
+            "until_charged": null,
+            "charge_remaining": null,
+            "design_capacity": null,
+            "last_full_capacity": null,
+            "last_full_capacity_percent": null,
+            "charge_msg": null,
+            "online": false,
+            "mode": null,
+            "temperature": null,
+            "temperature_unit": null,
+            "trip_points": [],
+            "messages": []
+        },
+        ...
+    ]
+}
+```
