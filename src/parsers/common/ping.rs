@@ -214,7 +214,7 @@ pub fn parse(data: Option<String>) -> PingData {
                 line_parts.next();
                 line_parts.next();
                 data.round_trip_as_avg = String::from(line_parts.next().unwrap()).trim_end_matches("ms").parse::<f64>().unwrap();
-                
+
             }
             else if sl.trim().starts_with("Packets") {
                 //     Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),

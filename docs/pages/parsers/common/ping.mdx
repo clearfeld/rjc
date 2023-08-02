@@ -1,0 +1,95 @@
+Usage (cli)
+
+```
+ping -n 3 google.com | rjc ping
+```
+
+Schema
+
+```
+{
+    destination_ip:       String,
+    data_bytes:           i32,
+    pattern:              Option<String>,
+    destination:          String,
+    packets_transmitted:  i32,
+    packets_received:     i32,
+    packet_loss_percent:  f64,
+    duplicates:           i32,
+    round_trip_as_min:    f64,
+    round_trip_as_avg:    f64,
+    round_trip_as_max:    f64,
+    round_trip_as_stddev: f64,
+    total_time_ms:        i32,
+    responses: [          // Vec<Response>,
+        {
+            response_type: String,
+            unparsed_line: String,
+            timestamp:     f64,
+            bytes:         i32,
+            response_ip:   String,
+            icmp_seq:      i32,
+            ttl:           i32,
+            time_ms:       f64,
+            duplicate:     bool,
+        }
+        ...
+    ]
+}
+```
+
+Example
+
+```json
+$ ping -n 3 google.com | rjc -o=pretty ping
+{
+    "destination_ip": "2607:f8b0:400b:803::200e",
+    "data_bytes": 32,
+    "pattern": null,
+    "destination": "google.com",
+    "packets_transmitted": 3,
+    "packets_received": 3,
+    "packet_loss_percent": 0.0,
+    "duplicates": 0,
+    "round_trip_as_min": 17.0,
+    "round_trip_as_avg": 26.0,
+    "round_trip_as_max": 40.0,
+    "round_trip_as_stddev": 0.0,
+    "total_time_ms": 0,
+    "responses": [
+        {
+            "response_type": "Reply",
+            "unparsed_line": "",
+            "timestamp": 0.0,
+            "bytes": 0,
+            "response_ip": "",
+            "icmp_seq": 0,
+            "ttl": 0,
+            "time_ms": 17.0,
+            "duplicate": false
+        },
+        {
+            "response_type": "Reply",
+            "unparsed_line": "",
+            "timestamp": 0.0,
+            "bytes": 0,
+            "response_ip": "",
+            "icmp_seq": 0,
+            "ttl": 0,
+            "time_ms": 21.0,
+            "duplicate": false
+        },
+        {
+            "response_type": "Reply",
+            "unparsed_line": "",
+            "timestamp": 0.0,
+            "bytes": 0,
+            "response_ip": "",
+            "icmp_seq": 0,
+            "ttl": 0,
+            "time_ms": 40.0,
+            "duplicate": false
+        }
+    ]
+}
+```

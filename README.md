@@ -86,9 +86,10 @@ fn main() {
 
 ### External
 
-| Commands                                     | Documentation                                        |
-| -------------------------------------------- | ---------------------------------------------------- |
-| [lsd](https://github.com/Peltoche/lsd)       | [details](https://rjc.vercel.app/parsers/common/lsd) |
+| Commands                                     | Documentation                                         |
+| -------------------------------------------- | ----------------------------------------------------- |
+| [lsd](https://github.com/Peltoche/lsd)       | [details](https://rjc.vercel.app/parsers/common/lsd)  |
+| ping                                         | [details](https://rjc.vercel.app/parsers/common/ping) |
 
 ### Formats
 
