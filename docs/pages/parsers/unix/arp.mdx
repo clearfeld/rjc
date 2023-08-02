@@ -1,0 +1,42 @@
+Usage (cli)
+
+```
+arp | rjc arp
+```
+
+Schema
+
+```
+{
+    "resources": [
+        {
+            name:       Option<String>,
+            address:    String,
+            hwtype:     String,
+            hwaddress:  String,
+            flags_mask: Option<String>,
+            iface:      String,
+        }
+        ...
+    ]
+}
+```
+
+Example
+
+```json
+$ arp | rjc -o=pretty arp
+{
+    "resources": [
+        {
+            "name": null,
+            "address": "_gateway",
+            "hwtype": "ether",
+            "hwaddress": "98:9d:5d:e8:0e:4d",
+            "flags_mask":"C",
+            "iface":"wlp0s20f3"
+        }
+        ...
+    ]
+}
+```

@@ -3,5 +3,5 @@
   "formats": "Formats",
   "unix": "Unix",
   "win32": "Win32",
-  "darwin": "darwin"
+  "darwin": "Darwin"
 }

@@ -61,6 +61,7 @@ fn main() {
 
 | Commands     | Documentation                                                |
 | ------------ | ------------------------------------------------------------ |
+| arp          | [details](https://rjc.vercel.app/parsers/unix/arp)           |
 | chage        | [details](https://rjc.vercel.app/parsers/unix/chage)         |
 | cksum        | [details](https://rjc.vercel.app/parsers/unix/cksum)         |
 | du           | [details](https://rjc.vercel.app/parsers/unix/du)            |
