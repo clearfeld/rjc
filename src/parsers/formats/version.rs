@@ -107,12 +107,31 @@ pub fn parse(data: Option<String>) -> VerData {
                     resources.patch = patch_str.parse::<i32>().unwrap();
                 }
                 else {
-                    resources.prerelease = String::from(patch_str);
                     patch = line_parts.next();
                     if patch.is_some() {
+                        resources.prerelease = String::from(patch_str);
                         resources.components.push(String::from(patch.unwrap()));
                         resources.patch = patch.unwrap().parse::<i32>().unwrap();
-
+                    }
+                    else {
+                        //Patch might be contained in prerelease string.
+                        let patch_chars = patch_str.char_indices();
+                        let mut patch = String::from("");
+                        let mut prerelease = String::from("");
+                        let mut is_patch = true;
+                        for char in patch_chars {
+                            if !char.1.is_numeric() {
+                                is_patch = false;
+                            }
+                            if is_patch {
+                                patch.push(char.1);
+                            }
+                            else {
+                                prerelease.push(char.1);
+                            }
+                        }
+                        resources.prerelease = prerelease;
+                        resources.patch = patch.parse::<i32>().unwrap();
                     }
                 }
             }
