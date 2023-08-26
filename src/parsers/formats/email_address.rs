@@ -1,3 +1,4 @@
+use wasm_bindgen::prelude::*;
 use serde::{Deserialize, Serialize};
 
 use crate::r_io_utils;
@@ -8,6 +9,11 @@ pub struct EmailAddressData {
     pub domain: String,
     pub local: String,
     pub local_plus_suffix: Option<String>
+}
+
+#[wasm_bindgen]
+pub fn formats_parse_email_address(data: Option<String>) -> Result<JsValue, JsValue> {
+    Ok(serde_wasm_bindgen::to_value(&parse(data))?)
 }
 
 pub fn parse(data: Option<String>) -> Vec<EmailAddressData> {

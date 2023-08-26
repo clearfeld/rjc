@@ -1,3 +1,4 @@
+use wasm_bindgen::prelude::*;
 use serde::{Deserialize, Serialize};
 
 use crate::r_io_utils;
@@ -26,6 +27,11 @@ pub struct Resources {
     pub name: String,
     // TODO: maybe add this for jc compatibility
     // epoch: i32,
+}
+
+#[wasm_bindgen]
+pub fn win32_parse_dir(data: Option<String>) -> Result<JsValue, JsValue> {
+    Ok(serde_wasm_bindgen::to_value(&parse(data))?)
 }
 
 pub fn parse(data: Option<String>) -> DirData {

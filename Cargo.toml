@@ -12,8 +12,9 @@ categories = ["command-line-utilities", "text-processing", "parser-implementatio
 exclude = ["/docs"]
 
 # TODO: investigate
-# [lib]
-# crate-type = ["lib", "cdylib"] # generate dynamic dll for none rust langs as well
+[lib]
+# name = "rjc_l"
+crate-type = ["cdylib", "rlib"] # generate dynamic dll for none rust langs as well
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -25,3 +26,5 @@ serde_yaml = "0.9.16"
 toml = "0.7.3"
 csv = "1.2.2"
 chrono = { version = "0.4.26", features = ["serde"] }
+wasm-bindgen = "0.2.87"
+serde-wasm-bindgen = "0.5.0"
